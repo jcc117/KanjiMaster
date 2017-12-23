@@ -3,6 +3,12 @@ body
 	background: url("tilebg.png") repeat fixed;
 }
 
+@font-face
+{
+	font-family: gorditas;
+	src: url(Gorditas-Regular.ttf);
+}
+
 .wrapper
 {
 	position: relative;
@@ -21,4 +27,9 @@ body
 	border-color: #ffbde1;
 	border-width: 40px 0px 0px 0px;
 	box-shadow: 0px, 5px, 15px rgba(0, 0, 0, .5);
+}
+
+.title
+{
+	font-family: gorditas;
 }

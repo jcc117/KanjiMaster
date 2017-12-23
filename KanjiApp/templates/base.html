@@ -2,7 +2,7 @@
 	<head>
 		<title>KanjiMaster</title>
 		<link href={{url_for('static', filename = 'style.css')}} type='text/css' rel='stylesheet'/>
-		
+
 		{% block header %}
 		{% endblock %}
 	</head>
@@ -10,8 +10,8 @@
 		<div class="wrapper">
 			<div class="content">
 				<div class="header">
-					<h1>KanjiMaster.com</h1>
-					<h3>A simple, interactive kanji study tool</h3>
+					<h1 class="title">KanjiMaster.com</h1>
+					<h3 class="title">A simple, interactive kanji study tool</h3>
 				</div>
 				{% block body %}
 				{% endblock %}
