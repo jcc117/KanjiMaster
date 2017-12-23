@@ -26,11 +26,13 @@ class Kanji(db.Model):
 	kanji_id = db.Column(db.Integer, primary_key = True)
 	kanji = db.Column(db.String(20), nullable = False)
 	romaji = db.Column(db.String(40), nullable = False)
+	difficulty = db.Column(db.Integer, nullable = False)
 
-	def __init__(self, k_id, k, r):
+	def __init__(self, k_id, k, r, d):
 		self.kanji_id = k_id
 		self.kanji = k
 		self.romaji = r
+		self.difficulty = d
 
 	def __repr__(self):
 		return self.kanji

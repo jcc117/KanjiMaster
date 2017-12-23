@@ -1,1 +1,8 @@
 {% extends "base.html" %}
+{% block body %}
+<nav>
+	<span>Quizzes</span>
+	<span>Progress Report</span>
+	<a href={{url_for('logout')}}><span>Logout</span></a>
+</nav>
+{% endblock %}
