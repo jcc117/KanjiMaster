@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+
+<h4>Login</h4>
+<form  method='post' action=''>
+	Username<input type='text' name='name'/>
+	<br />
+	Password<input type='password' name='pass'/>
+	<br />
+	<input type='submit' value='Log In'/>
+</form>
+<br />
+<a href={{url_for('sign_up')}}>Click here to sign up!</a>
+
+{% endblock %}
