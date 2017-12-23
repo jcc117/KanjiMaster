@@ -74,19 +74,7 @@ def home(userID):
 		if userID == g.user.userID:
 			error = None
 			if request.method == "POST":
-				#Add a new chatroom
-				chat = ChatRoom.query.filter_by(title = request.form['title']).first()
-				if not request.form['title']:
-					#Check that a title has been added
-					error = "Please enter a title"
-				elif chat is not None:
-					error = "That title already exists"
-				else:
-					#Note: chatrooms can have the same titles, does not affect overall implementation
-					newChat = ChatRoom(request.form['title'], g.user.user_id)
-					db.session.add(newChat)
-					g.user.chatrooms.append(newChat)
-					db.session.commit()
+				continue
 			return render_template('home.html')
 		else:
 			abort(401)
