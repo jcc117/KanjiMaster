@@ -74,7 +74,7 @@ def home(userID):
 		if userID == g.user.userID:
 			error = None
 			if request.method == "POST":
-				continue
+				print("Nope")
 			return render_template('home.html')
 		else:
 			abort(401)

@@ -2,16 +2,20 @@
 	<head>
 		<title>KanjiMaster</title>
 		<link href={{url_for('static', filename = 'style.css')}} type='text/css' rel='stylesheet'/>
-
-		<div class="header">
-			<h1>KanjiMaster.com</h1>
-			<h3>A simple, interactive kanji study tool</h3>
-		</div>
+		
 		{% block header %}
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}
-		{% endblock %}
+		<div class="wrapper">
+			<div class="content">
+				<div class="header">
+					<h1>KanjiMaster.com</h1>
+					<h3>A simple, interactive kanji study tool</h3>
+				</div>
+				{% block body %}
+				{% endblock %}
+			</div>
+		</div>
 	</body>
 </html>
