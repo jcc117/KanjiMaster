@@ -1,14 +1,19 @@
 #Write all data to the database
-from models import db, User, Report, Kanji
+from models import User, Report, Kanji
+
+import os
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'server.db')
 
 #insert all of the data
-def add_data():
-	db.session.add(Kanji(1, '',''))
-	db.session.add(Kanji(2, '',''))
-	db.session.add(Kanji(3, '',''))
-	db.session.add(Kanji(4, '',''))
-	db.session.add(Kanji(5, '',''))
-	db.session.add(Kanji(6, '',''))
+def add_data(db, app):
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'server.db')
+	db.session.add(Kanji(1, '海岸','kaigan'))
+	db.session.add(Kanji(2, '学期','gakki'))
+	db.session.add(Kanji(3, '時期','jiki'))
+	db.session.add(Kanji(4, '期間','kikan'))
+	db.session.add(Kanji(5, '期待','kitai'))
+	db.session.add(Kanji(6, '期末','kimatsu'))
 	db.session.add(Kanji(7, '',''))
 	db.session.add(Kanji(8, '',''))
 	db.session.add(Kanji(9, '',''))
