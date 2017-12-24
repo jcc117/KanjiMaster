@@ -1,6 +1,11 @@
 var timeoutID;
 var timeout = 1000;
 
+var kanji = [];
+var romaji = [];
+var score;
+var total = 30;
+
 //Set up the page
 function setup()
 {
@@ -15,6 +20,8 @@ function setup()
 
 	var rep = document.getElementById("reports");
 	rep.style.display = "none";
+	var game = document.getElementById("game");
+	game.style.display = "none";
 
 	//timeoutID = window.setTimeout(poller, timeout);
 }
@@ -24,7 +31,9 @@ function switch_to_q()
 {
 	var q = document.getElementById("quiz");
 	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
 
+	qu.style.display = "none";
 	q.style.display = "block";
 	r.style.display = "none";
 }
@@ -32,14 +41,17 @@ function switch_to_r()
 {
 	var q = document.getElementById("quiz");
 	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
 
+	qu.style.display = "none";
 	r.style.display = "block";
 	q.style.display = "none";
 }
 
 //Make a function to dynamically handle all requests
-function makeRequest(method, to, data)
+function makeRequest(method, to, action,data)
 {
+	//alert("making request");
 	var httpRequest = new XMLHttpRequest();
 	if(!httpRequest)
 	{
@@ -47,69 +59,127 @@ function makeRequest(method, to, data)
 		return false;
 	}
 
-	httpRequest.onreadystatechange = function(){ handleRequest(httpRequest)};
+	httpRequest.onreadystatechange = makeHandler(httpRequest, action);
+	//console.log(httpRequest.onreadystatechange);
+	httpRequest.open(method, to);
 	if(data)
 	{
 		httpRequest.setRequestHeader('Content-Type', 'application/json');
-		httpRequest.open(method, to, data);
+		httpRequest.send(data);
 	}
 	else
 	{
-		httpRequest.open(method, to)
+		httpRequest.send();
 	}
-	httpRequest.send();
 }
 
-//These requests will only have to handle getting kanji data
-//They only have to get the data to populate the quiz tables
-function handleRequest(httpRequest)
+//Return a handler for a general request
+function makeHandler(httpRequest, action)
 {
-	if(httpRequest.readyState === XMLHttpRequest.DONE)
+	function handler()
 	{
-		if(httpRequest.status === 200)
+		if(httpRequest.readyState === XMLHttpRequest.DONE)
 		{
-
-		}
-		else
-		{
-			alert("A problem occured. Please reload the page.");
+			//alert("done");
+			if(httpRequest.status === 200)
+			{
+				if(httpRequest.responseText)
+					console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
+				//else
+					//alert("I got nothin");
+				action(httpRequest.responseText);
+			}
+			else
+			{
+				alert("There was a problem with the request");
+				console.log("Error: " + JSON.parse(httpRequest.responseText));
+			}
 		}
 	}
+	//alert("function returned");
+	return handler;
+}
+
+function parseData(data)
+{
+	//document.write("returned: " + JSON.parse(data));
+	//alert(data);
+	var pData = JSON.parse(data);
+
+	for(i in pData)
+	{
+		var result = pData[i].split(":");
+		kanji[i] = result[0];
+		romaji[i] = result[1];
+		//console.log(result[1]);
+		//console.log("kanji:" + kanji[i] + ", romaji:" + romaji[i]);
+	}
+
+	var q = document.getElementById("quiz");
+	q.style.display = "none";
+	var r = document.getElementById("reports");
+	r.style.display = "none";
+	var g = document.getElementById("game");
+	g.style.display = "block";
+
+	quiz_setup();
+	
+}
+
+//Take a quiz after all information is gathered
+function quiz_setup()
+{
+	//Set up the quit button
+	document.getElementById("quit").addEventListener("click", quit, true);
+}
+
+//Quit a quiz and return to a menu
+function quit()
+{
+	//reset all variables
+	score = 0;
+	kanji = [];
+	romaji = [];
+
+	//set visibility of pages
+	switch_to_q();
 }
 
 function quiz1()
 {
-	makeRequest('POST', 1);
+	makeRequest('POST', "/kanji/", parseData, 1);
+	console.log('plz');
 }
 
 function quiz2()
 {
-	makeRequest('POST', 2);
+	makeRequest('POST', "/kanji/", parseData, 2);
 }
 
 function quiz3()
 {
-	makeRequest('POST', 3);
+	makeRequest('POST', "/kanji/", parseData, 3);
 }
 
 function quiz4()
 {
-	makeRequest('POST', 4);
+	makeRequest('POST', "/kanji/", parseData, 4);
 }
 
 function quiz5()
 {
-	makeRequest('POST', 5);
+	makeRequest('POST', "/kanji/", parseData, 5);
 }
 
 function quiz6()
 {
-	makeRequest('POST', 5);
+	makeRequest('POST', "/kanji/", parseData, 6);
 }
 
 //Initialize page setup on load time
 window.addEventListener("load", setup, true);
 
+/*
 $.ready(function($){
 
 	$('.sticker').mouseenter(function() {
@@ -117,5 +187,5 @@ $.ready(function($){
 		$(this).animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
 		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
 	});
-});
+});*/
 

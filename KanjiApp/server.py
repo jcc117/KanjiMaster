@@ -43,7 +43,7 @@ def before_request():
 def rootpage():
 	#Check if the user is already in session
 	if g.user:
-		return redirect(url_for('home', userID = g.user.username))
+		return redirect(url_for('home', userID = g.user.userID))
 	error = None
 	if request.method == 'POST':
 		#Check if a username was entered- extra precautions
@@ -111,6 +111,7 @@ def sign_up():
 			error = "That username is already taken"
 	return render_template("signup.html", error = error)
 
+#Logout
 @app.route("/log_out/")
 def logout():
 	if g.user:
@@ -119,6 +120,27 @@ def logout():
 	#If no one is in session, redirect to the root page
 	else:
 		return redirect(urlfor('rootpage'))
+
+#Get the kanji for a specific category
+@app.route("/kanji/", methods = ['POST'])
+def get_kanji():
+	if g.user:
+		#Get the grade level at which the user wants to get kanji from
+		grade = request.json
+		print(str(grade))
+		results = Kanji.query.filter_by(difficulty = grade).all()
+
+		#Format the results for sending to the user
+		rv = []
+		for i in range(0, len(results)):
+			string = "{}:{}".format(results[i].kanji, results[i].romaji)
+			rv.append(string)
+
+		print(str(rv))
+		return json.dumps(rv)
+
+	else:
+		abort(404)
 
 def add_data():
 	db.session.add(Kanji(1, '海岸','kaigan', 1))
