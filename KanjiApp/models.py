@@ -1,21 +1,25 @@
 #Models/Schemas
 
 from flask_sqlalchemy import SQLAlchemy
+from passlib.hash import bcrypt
 
 db = SQLAlchemy()
 
 class User(db.Model):
-	userID = db.Column(db.String(20), primary_key = True)
-	password = db.Column(db.String(20), nullable = False)
+	userID = db.Column(db.String(300), primary_key = True)
+	password = db.Column(db.String(300), nullable = False)
 	reports = db.relationship('Report', backref = 'user', lazy = 'dynamic')
 
 	def __init__(self, id, passw):
 		self.userID = id
-		self.password = passw
+		self.password = bcrypt.encrypt(passw)
+
+	def validate_password(self, passw):
+		return bcrypt.verify(passw, self.password)
 
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)
-	userID = db.Column(db.String(20), db.ForeignKey('user.userID'), nullable = False)
+	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)
 	difficulty = db.Column(db.Integer)
 
 	def __init__(self, id, user):

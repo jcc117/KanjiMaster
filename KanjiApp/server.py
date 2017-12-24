@@ -58,7 +58,7 @@ def rootpage():
 			elif not request.form['pass']:
 				error = "Please enter a password"
 			#Check for correct password
-			elif name.password == request.form['pass']:
+			elif name.validate_password(request.form['pass']):
 				session['userID'] = name.userID
 				flash("You have been logged in")
 				return redirect(url_for('home', userID = name.userID))
