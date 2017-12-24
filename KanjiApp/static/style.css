@@ -33,3 +33,45 @@ body
 {
 	font-family: gorditas;
 }
+
+input[type=submit]
+{
+	background-color: #ff80c6;
+	color: white;
+	border-radius: ;
+	padding: 10px 24px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover
+{
+	background-color: white;
+	color: #ff80c6;
+	transition-duration: 0.4s;
+}
+
+input[type=text]
+{
+
+}
+
+input[type=text]:focus
+{
+
+}
+
+.homemenu span
+{
+	background: #ff99d3;
+	color: white;
+	text-align: center;
+	padding-left: 5em;
+	padding-right: 5em;
+}
+
+.homemenu span:hover
+{
+	background: white;
+	color: #ff99d3;
+	transition-duration: 0.4s;
+}

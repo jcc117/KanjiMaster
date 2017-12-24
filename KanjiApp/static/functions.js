@@ -110,3 +110,12 @@ function quiz6()
 //Initialize page setup on load time
 window.addEventListener("load", setup, true);
 
+$.ready(function($){
+
+	$('.sticker').mouseenter(function() {
+		if ($(this).is(':animated')) {return;}
+		$(this).animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
+		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
+	});
+});
+

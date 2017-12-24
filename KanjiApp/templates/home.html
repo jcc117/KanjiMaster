@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 {% block header %}
 	<script src={{url_for('static', filename = 'functions.js')}} type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js"></script>
 {% endblock %}
 	
 {% block body %}
-<nav>
+<nav class="homemenu">
 	<span id="qspan">Quizzes</span>
 	<span id="rspan">Progress Report</span>
+	<span id="tspan">Site Tutorial</span>
 	<a href={{url_for('logout')}}><span>Logout</span></a>
 </nav>
+
+<img src={{url_for('static', filename = 'sticker_s.png')}} id='sticker'/>
 
 <!--Will only show one of these sections at a time. Default is quizzes-->
 
