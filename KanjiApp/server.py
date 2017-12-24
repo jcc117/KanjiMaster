@@ -119,7 +119,7 @@ def logout():
 		return redirect(url_for('rootpage'))
 	#If no one is in session, redirect to the root page
 	else:
-		return redirect(urlfor('rootpage'))
+		return redirect(url_for('rootpage'))
 
 #Get the kanji for a specific category
 @app.route("/kanji/", methods = ['POST'])
