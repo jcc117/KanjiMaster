@@ -3,8 +3,9 @@ var timeout = 1000;
 
 var kanji = [];
 var romaji = [];
-var score;
+var score = 0;
 var total = 30;
+var turn = 1;
 
 //Set up the page
 function setup()
@@ -129,8 +130,82 @@ function parseData(data)
 //Take a quiz after all information is gathered
 function quiz_setup()
 {
-	//Set up the quit button
-	document.getElementById("quit").addEventListener("click", quit, true);
+	if(turn <= total)
+	{
+		//Set up the quit button
+		document.getElementById("quit").addEventListener("click", quit, true);
+
+		//Retrieve all choice buttons
+		var c1 = document.getElementById("c1");
+		var c2 = document.getElementById("c2");
+		var c3 = document.getElementById("c3");
+		var c4 = document.getElementById("c4");
+
+		//Randomly select a kanji to test
+		var cor = Math.floor((Math.random() * romaji.length));
+		var cor_str = romaji[cor];
+		var cor_kan = kanji[cor];
+
+		//Randomly select other 3 other
+		var selected_nums = [];
+		selected_nums[0] = cor;
+		var num = 1;
+		while(num < 4)
+		{
+			var next = Math.floor((Math.random() * romaji.length));
+			var found = false;
+
+			//Check that number wasn't already selected
+			for(i in selected_nums)
+			{
+				if(selected_nums[i] === next)
+				{
+					found = true;
+					break;
+				}
+			}
+
+			if(!found)
+			{
+				selected_nums[num++] = next;
+			}
+		}
+
+		//For now, just set the answers up in the given order
+		c1.value = romaji[selected_nums[0]];
+		c2.value = romaji[selected_nums[1]];
+		c3.value = romaji[selected_nums[2]];
+		c4.value = romaji[selected_nums[3]];
+
+		c1.addEventListener("click", correct, true);
+		c2.addEventListener("click", wrong, true);
+		c3.addEventListener("click", wrong, true);
+		c4.addEventListener("click", wrong, true);
+	}
+	else
+	{
+		show_results();
+	}
+}
+
+function show_results()
+{
+	//Temporary
+	console.log("score: " + score);
+	console.log("total: " + total);
+}
+
+function correct()
+{
+	score++;
+	turn++;
+	quiz_setup();
+}
+
+function wrong()
+{
+	turn++;
+	quiz_setup();
 }
 
 //Quit a quiz and return to a menu
@@ -138,6 +213,7 @@ function quit()
 {
 	//reset all variables
 	score = 0;
+	turn = 1;
 	kanji = [];
 	romaji = [];
 
