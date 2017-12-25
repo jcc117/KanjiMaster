@@ -208,6 +208,9 @@ function quiz_setup()
 			c3.addEventListener("click", wrong, true);
 			c4.addEventListener("click", correct, true);
 		}
+
+		//Display the question
+		document.getElementById("question").textContent=cor_kan;
 		
 		/*
 		c1.addEventListener("click", correct, true);
