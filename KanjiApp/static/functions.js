@@ -171,16 +171,50 @@ function quiz_setup()
 			}
 		}
 
-		//For now, just set the answers up in the given order
-		c1.value = romaji[selected_nums[0]];
-		c2.value = romaji[selected_nums[1]];
-		c3.value = romaji[selected_nums[2]];
-		c4.value = romaji[selected_nums[3]];
+		//Randomize the order of the array
+		selected_nums = shuffle(selected_nums);
 
+		//Assign all values and event listeners
+		//At least one of these if statements should trigger adding the event listeners
+		c1.value = romaji[selected_nums[0]];
+		if(selected_nums[0] === cor)
+		{
+			c1.addEventListener("click", correct, true);
+			c2.addEventListener("click", wrong, true);
+			c3.addEventListener("click", wrong, true);
+			c4.addEventListener("click", wrong, true);
+		}
+		c2.value = romaji[selected_nums[1]];
+		if(selected_nums[1] === cor)
+		{
+			c1.addEventListener("click", wrong, true);
+			c2.addEventListener("click", correct, true);
+			c3.addEventListener("click", wrong, true);
+			c4.addEventListener("click", wrong, true);
+		}
+		c3.value = romaji[selected_nums[2]];
+		if(selected_nums[2] === cor)
+		{
+			c1.addEventListener("click", wrong, true);
+			c2.addEventListener("click", wrong, true);
+			c3.addEventListener("click", correct, true);
+			c4.addEventListener("click", wrong, true);
+		}
+		c4.value = romaji[selected_nums[3]];
+		if(selected_nums[3] === cor)
+		{
+			c1.addEventListener("click", wrong, true);
+			c2.addEventListener("click", wrong, true);
+			c3.addEventListener("click", wrong, true);
+			c4.addEventListener("click", correct, true);
+		}
+		
+		/*
 		c1.addEventListener("click", correct, true);
 		c2.addEventListener("click", wrong, true);
 		c3.addEventListener("click", wrong, true);
 		c4.addEventListener("click", wrong, true);
+		*/
 	}
 	else
 	{
@@ -188,11 +222,34 @@ function quiz_setup()
 	}
 }
 
+//Shuffle the array of answers to assign to buttons
+function shuffle(array)
+{
+	var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) 
+  {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function show_results()
 {
 	//Temporary
 	console.log("score: " + score);
 	console.log("total: " + total);
+	switch_to_q();
 }
 
 function correct()
@@ -224,7 +281,7 @@ function quit()
 function quiz1()
 {
 	makeRequest('POST', "/kanji/", parseData, 1);
-	console.log('plz');
+	//console.log('plz');
 }
 
 function quiz2()
