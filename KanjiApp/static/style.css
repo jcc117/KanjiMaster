@@ -47,7 +47,7 @@ input[type=submit]:hover
 {
 	background-color: white;
 	color: #ff80c6;
-	transition-duration: 0.4s;
+	transition-duration: 0s;
 }
 
 input[type=text]

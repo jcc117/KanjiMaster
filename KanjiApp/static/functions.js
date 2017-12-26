@@ -352,6 +352,9 @@ jQuery(function($){
 		$(this).animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
 		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
 	});
+
+	var audio = $("#but_hov")[0];
+	$('.choice').mouseenter(function(){audio.load(); audio.play();});
 });
 
 

@@ -48,14 +48,18 @@
 	<p>Match the kanji compound with it's reading.</p>
 	<span id="question"></span>
 	<nav>
-		<span><input type="submit" id="c1" value=""/></span>
-		<span><input type="submit" id="c2" value=""/></span>
-		<span><input type="submit" id="c3" value=""/></span>
-		<span><input type="submit" id="c4" value=""/></span>
+		<span><input type="submit" id="c1" value="" class="choice"/></span>
+		<span><input type="submit" id="c2" value="" class="choice"/></span>
+		<span><input type="submit" id="c3" value="" class="choice"/></span>
+		<span><input type="submit" id="c4" value="" class="choice"/></span>
 	</nav>
-	<input type="submit" id="quit" value="Quit Quiz"/>
+	<input type="submit" id="quit" value="Quit Quiz" class="choice"/>
 	<audio loop id="gameAudio">
 		<source  src = {{url_for('static', filename = 'game.mp3')}} type="audio/mpeg">
+	</audio>
+	<!--Game hover button sound effect-->
+	<audio id="but_hov">
+		<source src={{url_for('static', filename = 'button.mp3')}} type="audio/mpeg">
 	</audio>
 </section>
 
