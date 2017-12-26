@@ -25,6 +25,14 @@ function setup()
 	game.style.display = "none";
 
 	//timeoutID = window.setTimeout(poller, timeout);
+
+	//Set the animation
+	/*var pic = document.getElementById("sticker");
+	pic.addEventListener("mouseenter", function(){
+		//if((this).is(':animated')) {return;}
+		this.animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
+		.animate({ bottom: "-= 60" }, {duration: 150, easing: "easeInSine"});
+	});*/
 }
 
 //Switch visibility of which screen you are looking at
@@ -37,6 +45,8 @@ function switch_to_q()
 	qu.style.display = "none";
 	q.style.display = "block";
 	r.style.display = "none";
+
+	quiz_reset();
 }
 function switch_to_r()
 {
@@ -47,6 +57,17 @@ function switch_to_r()
 	qu.style.display = "none";
 	r.style.display = "block";
 	q.style.display = "none";
+
+	quiz_reset();
+}
+
+function quiz_reset()
+{
+	var audio = document.getElementById("gameAudio");
+	audio.pause();
+
+	score = 0;
+	turn = 1;
 }
 
 //Make a function to dynamically handle all requests
@@ -122,6 +143,11 @@ function parseData(data)
 	r.style.display = "none";
 	var g = document.getElementById("game");
 	g.style.display = "block";
+
+	//Start audio
+	var audio = document.getElementById("gameAudio");
+	audio.load();
+	audio.play();
 
 	quiz_setup();
 	
@@ -277,6 +303,9 @@ function quit()
 	kanji = [];
 	romaji = [];
 
+	var audio = document.getElementById("gameAudio");
+	audio.pause();
+
 	//set visibility of pages
 	switch_to_q();
 }
@@ -315,13 +344,15 @@ function quiz6()
 //Initialize page setup on load time
 window.addEventListener("load", setup, true);
 
-/*
-$.ready(function($){
+
+jQuery(function($){
 
 	$('.sticker').mouseenter(function() {
 		if ($(this).is(':animated')) {return;}
 		$(this).animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
 		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
 	});
-});*/
+});
+
+
 

@@ -75,3 +75,15 @@ input[type=text]:focus
 	color: #ff99d3;
 	transition-duration: 0.4s;
 }
+
+.sticker
+{
+	display: inline-block;
+	position: relative;
+}
+
+.sticker img
+{
+	position: relative;
+	margin: 0px 20px;
+}
