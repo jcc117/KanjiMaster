@@ -1,6 +1,13 @@
+@font-face
+{
+	font-family: cheri;
+	src: url(cheri_reg.ttf);
+}
+
 body
 {
 	background: url("tilebg.png") repeat fixed;
+	font-family: cheri;
 }
 
 @font-face
@@ -34,6 +41,7 @@ body
 	font-family: gorditas;
 }
 
+/*Inputs*/
 input[type=submit]
 {
 	background-color: #ff80c6;
@@ -52,21 +60,41 @@ input[type=submit]:hover
 
 input[type=text]
 {
-
+	background-color: white;
+	color: black;
+	border-radius: 8px;
+	border: 2px solid black;
 }
-
 input[type=text]:focus
 {
-
+	background-color: #ffbde1;
+	color: black;
+	border-radius: 8px;
+	border: 2px solid black;
+}
+input[type=password]
+{
+	background-color: white;
+	color: black;
+	border-radius: 8px;
+	border: 2px solid black;
+}
+input[type=password]:focus
+{
+	background-color: #ffbde1;
+	color: black;
+	border-radius: 8px;
+	border: 2px solid black;
 }
 
+/*Navigation panel on homepage*/
 .homemenu span
 {
 	background: #ff99d3;
 	color: white;
 	text-align: center;
-	padding-left: 5em;
-	padding-right: 5em;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 .homemenu span:hover
