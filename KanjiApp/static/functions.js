@@ -316,6 +316,21 @@ function correct()
 	score++;
 	turn++;
 
+	//Play sound effect
+	var ping = document.getElementById("ping");
+	ping.load();
+	var promise = ping.play();
+
+	if(promise !== undefined)
+	{
+		promise.then(_ => {
+			console.log("yay")
+		})
+		.catch(error => {
+			console.log("error in sound effect");
+		});
+	}
+
 	$('#feedback').html('Correct!').removeClass('invalid').addClass('valid');
 
 	$("#s_sticker").hide();

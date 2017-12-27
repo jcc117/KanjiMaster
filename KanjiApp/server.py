@@ -22,7 +22,7 @@ db.init_app(app)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
-	return rv.user_id if rv else None
+	return rv.userID if rv else None
 
 @app.cli.command('initdb')
 def initdb_command():
