@@ -6,6 +6,7 @@ var romaji = [];
 var score = 0;
 var total = 30;
 var turn = 1;
+var cor;
 
 //Set up the page
 function setup()
@@ -105,8 +106,8 @@ function makeHandler(httpRequest, action)
 			//alert("done");
 			if(httpRequest.status === 200)
 			{
-				if(httpRequest.responseText)
-					console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
+				//if(httpRequest.responseText)
+					//console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
 				//else
 					//alert("I got nothin");
 				action(httpRequest.responseText);
@@ -171,7 +172,7 @@ function quiz_setup()
 		var c4 = document.getElementById("c4");
 
 		//Randomly select a kanji to test
-		var cor = Math.floor((Math.random() * romaji.length));
+		cor = Math.floor((Math.random() * romaji.length));
 		var cor_str = romaji[cor];
 		var cor_kan = kanji[cor];
 
@@ -207,12 +208,12 @@ function quiz_setup()
 
 		//Assign all values and event listeners
 		//At least one of these if statements should trigger adding the event listeners
-		console.log("cor is " + cor);
-		console.log("numbers: " + selected_nums);
+		//console.log("cor is " + cor);
+		//console.log("numbers: " + selected_nums);
 		c1.value = romaji[selected_nums[0]];
 		if(selected_nums[0] === cor)
 		{
-			console.log("a is right");
+			//console.log("a is right");
 			c1.addEventListener("click", correct);
 			c2.addEventListener("click", wrong);
 			c3.addEventListener("click", wrong);
@@ -221,7 +222,7 @@ function quiz_setup()
 		c2.value = romaji[selected_nums[1]];
 		if(selected_nums[1] === cor)
 		{
-			console.log("b is right");
+			//console.log("b is right");
 			c1.addEventListener("click", wrong);
 			c2.addEventListener("click", correct);
 			c3.addEventListener("click", wrong);
@@ -230,7 +231,7 @@ function quiz_setup()
 		c3.value = romaji[selected_nums[2]];
 		if(selected_nums[2] === cor)
 		{
-			console.log("c is right");
+			//console.log("c is right");
 			c1.addEventListener("click", wrong);
 			c2.addEventListener("click", wrong);
 			c3.addEventListener("click", correct);
@@ -239,7 +240,7 @@ function quiz_setup()
 		c4.value = romaji[selected_nums[3]];
 		if(selected_nums[3] === cor)
 		{
-			console.log("d is right");
+			//console.log("d is right");
 			c1.addEventListener("click", wrong);
 			c2.addEventListener("click", wrong);
 			c3.addEventListener("click", wrong);
@@ -315,6 +316,8 @@ function correct()
 	score++;
 	turn++;
 
+	$('#feedback').html('Correct!').removeClass('invalid').addClass('valid');
+
 	$("#s_sticker").hide();
 	$("#s_sticker2").show();
 
@@ -327,6 +330,8 @@ function correct()
 
 function wrong()
 {
+	$('#feedback').html('Wrong: the answer was ' + romaji[cor]).removeClass('valid').addClass('invalid');
+
 	$("#s_sticker2").hide();
 	$("#s_sticker").show();
 
@@ -342,6 +347,8 @@ function quit()
 	turn = 1;
 	kanji = [];
 	romaji = [];
+
+	$('#feedback').html('');
 
 	var audio = document.getElementById("gameAudio");
 	audio.pause();
