@@ -88,6 +88,7 @@ input[type=text]:focus
 	margin: 0px 20px;
 }
 
+/*For login screen stickers*/
 .sticker-container
 {
 	position: absolute;
@@ -103,4 +104,51 @@ input[type=text]:focus
 .sticker-container.right
 {
 	right: 0px;
+}
+
+/*For passwords*/
+#message
+{
+	display:none;
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+#message p
+{
+	padding: 10px 35px;
+	font-size: 18px;
+}
+
+.valid
+{
+	color: green;
+}
+
+.valid:before
+{
+	position: relative;
+	left: 0px;
+}
+
+.invalid
+{
+	color: red;
+}
+
+.invalid:before
+{
+	position: relative;
+	left: 0px;
+}
+
+#confirm
+{
+	display:none;
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+	text-align: left;
 }
