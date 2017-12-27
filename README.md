@@ -28,12 +28,12 @@ Installation instructions
 This is known to work on windows. Results on other operating systems are unknown.
 
 TODO:
-Site Tutorial
-Progress Reports
-User Settings
-Kanji Sheets
-Add more content on the site in general
-Fix issues
-Add audio settings
-Add kanji to the list: might wait til encoding is figured out
+	Site Tutorial
+	Progress Reports
+	User Settings
+	Kanji Sheets
+	Add more content on the site in general
+	Fix issues
+	Add audio settings
+	Add kanji to the list: might wait til encoding is figured out
 
