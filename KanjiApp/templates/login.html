@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src={{url_for('static', filename = 'functions.js')}} type="text/javascript"></script>
+{% endblock %}
+
 {% block body %}
 
 <h4>Login</h4>
@@ -11,5 +16,14 @@
 </form>
 <br />
 <a href={{url_for('sign_up')}}>Click here to sign up!</a>
+
+<div class="sticker-container left">
+	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/s_sticker_1.png')}}/></div>
+	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/n_sticker_1.png')}}/></div>
+</div>
+<div class="sticker-container right">
+	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/m_sticker_1.png')}}/></div>
+	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/y_sticker_1.png')}}/></div>
+</div>
 
 {% endblock %}

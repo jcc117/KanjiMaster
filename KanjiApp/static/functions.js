@@ -149,6 +149,9 @@ function parseData(data)
 	audio.load();
 	audio.play();
 
+	$("#s_sticker").show();
+	$("#s_sticker2").hide();
+
 	quiz_setup();
 	
 }
@@ -285,11 +288,22 @@ function correct()
 {
 	score++;
 	turn++;
+
+	$("#s_sticker").hide();
+	$("#s_sticker2").show();
+
+		if ($('#s_sticker2').is(':animated')) {return;}
+		$('#s_sticker2').animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
+		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
+
 	quiz_setup();
 }
 
 function wrong()
 {
+	$("#s_sticker2").hide();
+	$("#s_sticker").show();
+
 	turn++;
 	quiz_setup();
 }

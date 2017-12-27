@@ -87,3 +87,20 @@ input[type=text]:focus
 	position: relative;
 	margin: 0px 20px;
 }
+
+.sticker-container
+{
+	position: absolute;
+	bottom: 20px;
+	margin: 0px 60px;
+}
+
+.sticker-container.left
+{
+	left: 0px;
+}
+
+.sticker-container.right
+{
+	right: 0px;
+}

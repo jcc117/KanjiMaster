@@ -14,12 +14,13 @@
 	<a href={{url_for('logout')}}><span>Logout</span></a>
 </nav>
 
-<div class="sticker"><img src={{url_for('static', filename = 'sticker_s.png')}} id='sticker'/></div>
+
 
 <!--Will only show one of these sections at a time. Default is quizzes-->
 
 <!--Show all information on what quizzes you can take-->
 <section id="quiz">
+	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='sticker'/></div>
 	<nav>
 		<span><input type="submit" id="g1" value="Grade 1"/></span>
 		<span><input type="submit" id="g2" value="Grade 2"/></span>
@@ -39,12 +40,15 @@
 
 <!--Show all information on progress reports-->
 <section id="reports" display="none">
+	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/n_sticker_1.png')}} id='n_sticker'/></div>
 	<h4>Progress Reports</h5>
 	<p>Here you will find a report of how well you are doing on your kanji quizzes<p>
 </section>
 
 <!--Store all of the game information-->
 <section id="game" display="none">
+	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='s_sticker'/></div>
+	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_2.png')}} id='s_sticker2'/></div>
 	<p>Match the kanji compound with it's reading.</p>
 	<span id="question"></span>
 	<nav>
