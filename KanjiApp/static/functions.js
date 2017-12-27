@@ -203,39 +203,47 @@ function quiz_setup()
 		//Randomize the order of the array
 		selected_nums = shuffle(selected_nums);
 
+		clear_listeners();
+
 		//Assign all values and event listeners
 		//At least one of these if statements should trigger adding the event listeners
+		console.log("cor is " + cor);
+		console.log("numbers: " + selected_nums);
 		c1.value = romaji[selected_nums[0]];
 		if(selected_nums[0] === cor)
 		{
-			c1.addEventListener("click", correct, true);
-			c2.addEventListener("click", wrong, true);
-			c3.addEventListener("click", wrong, true);
-			c4.addEventListener("click", wrong, true);
+			console.log("a is right");
+			c1.addEventListener("click", correct);
+			c2.addEventListener("click", wrong);
+			c3.addEventListener("click", wrong);
+			c4.addEventListener("click", wrong);
 		}
 		c2.value = romaji[selected_nums[1]];
 		if(selected_nums[1] === cor)
 		{
-			c1.addEventListener("click", wrong, true);
-			c2.addEventListener("click", correct, true);
-			c3.addEventListener("click", wrong, true);
-			c4.addEventListener("click", wrong, true);
+			console.log("b is right");
+			c1.addEventListener("click", wrong);
+			c2.addEventListener("click", correct);
+			c3.addEventListener("click", wrong);
+			c4.addEventListener("click", wrong);
 		}
 		c3.value = romaji[selected_nums[2]];
 		if(selected_nums[2] === cor)
 		{
-			c1.addEventListener("click", wrong, true);
-			c2.addEventListener("click", wrong, true);
-			c3.addEventListener("click", correct, true);
-			c4.addEventListener("click", wrong, true);
+			console.log("c is right");
+			c1.addEventListener("click", wrong);
+			c2.addEventListener("click", wrong);
+			c3.addEventListener("click", correct);
+			c4.addEventListener("click", wrong);
 		}
 		c4.value = romaji[selected_nums[3]];
 		if(selected_nums[3] === cor)
 		{
-			c1.addEventListener("click", wrong, true);
-			c2.addEventListener("click", wrong, true);
-			c3.addEventListener("click", wrong, true);
-			c4.addEventListener("click", correct, true);
+			console.log("d is right");
+			c1.addEventListener("click", wrong);
+			c2.addEventListener("click", wrong);
+			c3.addEventListener("click", wrong);
+			c4.addEventListener("click", correct);
 		}
 
 		//Display the question
@@ -252,6 +260,24 @@ function quiz_setup()
 	{
 		show_results();
 	}
+}
+
+//Remove all event listeners from the buttons
+function clear_listeners()
+{
+	var c1 = document.getElementById("c1");
+	var c2 = document.getElementById("c2");
+	var c3 = document.getElementById("c3");
+	var c4 = document.getElementById("c4");
+
+	c1.removeEventListener("click", wrong);
+	c1.removeEventListener("click", correct);
+	c2.removeEventListener("click", wrong);
+	c2.removeEventListener("click", correct);
+	c3.removeEventListener("click", wrong);
+	c3.removeEventListener("click", correct);
+	c4.removeEventListener("click", wrong);
+	c4.removeEventListener("click", correct);
 }
 
 //Shuffle the array of answers to assign to buttons
