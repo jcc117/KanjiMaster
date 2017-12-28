@@ -21,10 +21,16 @@ class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)
 	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)
 	difficulty = db.Column(db.Integer)
+	num_correct = db.Column(db.Integer)
+	num_total = db.Column(db.Integer)
+	date = db.Column(db.DateTime)
 
-	def __init__(self, id, user):
-		self.reportID = id
+	def __init__(self, user, difficulty, num_correct, num_total, date):
 		self.userID = user
+		self.difficulty = difficulty
+		self.num_correct = num_correct
+		self.num_total = num_total
+		self.date = date
 
 class Kanji(db.Model):
 	kanji_id = db.Column(db.Integer, primary_key = True)

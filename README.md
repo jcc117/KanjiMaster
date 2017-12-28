@@ -3,7 +3,7 @@
 A web application to help with Japanese kanji memorization
 
 All credit for music files and png files goes to Team Salvato, Developer of
-Doki Doki Literature Club. Their art heavily influenced the design of this site.
+Doki Doki Literature Club. Their artwork acts as placeholders for the time being.
 
 Installation instructions
 	pip install passlib
@@ -28,12 +28,13 @@ Installation instructions
 This is known to work on windows. Results on other operating systems are unknown.
 
 TODO:
-	Site Tutorial
-	Progress Reports
-	User Settings
-	Kanji Sheets
-	Add more content on the site in general
-	Fix issues
-	Add audio settings
-	Add kanji to the list: might wait til encoding is figured out
+	Site Tutorial, 
+	Progress Reports, 
+	User Settings, 
+	Kanji Sheets, 
+	Add more content on the site in general, 
+	Fix issues, 
+	Add audio settings, 
+	Add kanji to the list: might wait til encoding is figured out,
+	Modify into a RESTful api
 

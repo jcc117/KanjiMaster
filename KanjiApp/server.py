@@ -7,6 +7,8 @@ from flask_restful import reqparse, abort, Api, Resource
 
 from models import db, User, Report, Kanji
 
+from datetime import datetime
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -138,6 +140,22 @@ def get_kanji():
 
 		print(str(rv))
 		return json.dumps(rv)
+
+	else:
+		abort(404)
+
+#Add a report to the database
+@app.route("/report/", methods = ['POST'])
+def add_report():
+	if g.user:
+		#Parse the request
+		data = request.json
+		difficulty = 0
+		num_correct = 0
+		num_total = 0
+
+		#Add the report to the user
+		db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
 
 	else:
 		abort(404)
