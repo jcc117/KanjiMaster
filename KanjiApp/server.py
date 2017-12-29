@@ -22,6 +22,11 @@ app.debug = True
 
 db.init_app(app)
 
+parser = reqparse.RequestParser()
+parser.add_argument('score', type=int)
+parser.add_argument('dif', type=int)
+parser.add_arugment('total', type=int)
+
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
 	return rv.userID if rv else None
@@ -177,10 +182,10 @@ class Report(Resource):
 	def post(self):
 		if g.user:
 			#Parse the request
-			data = request.json
-			difficulty = 0
-			num_correct = 0
-			num_total = 0
+			data = parser.parse_args()
+			difficulty = data['dif']
+			num_correct = data['score']
+			num_total = data['total']
 
 			#Add the report to the user
 			db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
