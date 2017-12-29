@@ -38,8 +38,7 @@ class Kanji(db.Model):
 	romaji = db.Column(db.String(40), nullable = False)
 	difficulty = db.Column(db.Integer, nullable = False)
 
-	def __init__(self, k_id, k, r, d):
-		self.kanji_id = k_id
+	def __init__(self, k, r, d):
 		self.kanji = k
 		self.romaji = r
 		self.difficulty = d

@@ -142,54 +142,86 @@ def get_kanji():
 		return json.dumps(rv)
 
 	else:
-		abort(404)
+		abort(401)
 
-#Add a report to the database
-@app.route("/report/", methods = ['POST'])
-def add_report():
-	if g.user:
-		#Parse the request
-		data = request.json
-		difficulty = 0
-		num_correct = 0
-		num_total = 0
+#Lets make this restful
+#Restful Kanji Resource
+class R_Kanji(Resource):
+	def get(self):
+		return None
 
-		#Add the report to the user
-		db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
+	def post(self):
+		if g.user:
+			data = request.json
+			kanji = ''
+			romaji = ''
+			difficulty = 0
 
-	else:
-		abort(404)
+			db.session.add(Kanji(kanji, romaji, difficulty))
+		return None
+
+#Restful Report Resource
+class Report(Resource):
+	#Get all reports for a user
+	def get(self):
+		if g.user:
+			results = Report.query.filter_by(userID = g.user.userID)
+			rv = []
+			for i in range(0, len(results)):
+				string = "{}:{}:{}:{}".format(results[i].date, results[i].difficulty, results[i].num_total, results[i].num_correct)
+				rv.append(string)
+			return json.dumps(rv), 200
+		return json.dumps("Unauthorized"), 401
+
+	#Post a new report	
+	def post(self):
+		if g.user:
+			#Parse the request
+			data = request.json
+			difficulty = 0
+			num_correct = 0
+			num_total = 0
+
+			#Add the report to the user
+			db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
+			return json.dumps("Resource created"), 201
+		return json.dumps("Unauthorized"), 401
+
+		
+
+#api.add_resource(Kanji, "/kanji/")
+api.add_resource(Report, "/report/")
 
 def add_data():
-	db.session.add(Kanji(1, u'海岸','kaigan', 1))
-	db.session.add(Kanji(2, u'学期','gakki', 1))
-	db.session.add(Kanji(3, u'時期','jiki', 1))
-	db.session.add(Kanji(4, u'期間','kikan', 1))
-	db.session.add(Kanji(5, u'期待','kitai', 1))
-	db.session.add(Kanji(6, u'期末','kimatsu', 1))
-	db.session.add(Kanji(7, u'上級','joukyuu', 1))
-	db.session.add(Kanji(8, u'中級','chukyuu', 1))
-	db.session.add(Kanji(9, u'初級','shokyuu', 1))
-	db.session.add(Kanji(10, '野球','yakyuu', 1))
-	db.session.add(Kanji(11, '結局','kekkyoku', 1))
-	db.session.add(Kanji(12, '苦手','nigate', 1))
-	db.session.add(Kanji(13, 'ー県','ken', 1))
-	db.session.add(Kanji(14, '金庫','kinko', 1))
-	db.session.add(Kanji(15, '不幸','fukou', 1))
-	db.session.add(Kanji(16, '大根','daikon', 1))
-	db.session.add(Kanji(17, '屋根','yane', 1))
-	db.session.add(Kanji(18, '球','tama', 1))
-	db.session.add(Kanji(19, '苦しい','kurushii', 1))
-	db.session.add(Kanji(20, '苦しむ','kurushimu', 1))
-	db.session.add(Kanji(21, '苦い','nigai', 1))
-	db.session.add(Kanji(22, '苦る','nigaru', 1))
-	db.session.add(Kanji(23, '血','ketsu', 1))
-	db.session.add(Kanji(24, '湖','mizuumi', 1))
-	db.session.add(Kanji(25, '幸い','saiwai', 1))
-	db.session.add(Kanji(26, '幸せ','shiawase', 1))
-	db.session.add(Kanji(27, '祭る','matsuru', 1))
-	db.session.add(Kanji(28, '祭り','matsuri', 1))
-	db.session.add(Kanji(29, '皿','sara', 1))
+	db.session.add(Kanji(u'海岸','kaigan', 1))
+	db.session.add(Kanji(u'学期','gakki', 1))
+	db.session.add(Kanji(u'時期','jiki', 1))
+	db.session.add(Kanji(u'期間','kikan', 1))
+	db.session.add(Kanji(u'期待','kitai', 1))
+	db.session.add(Kanji(u'期末','kimatsu', 1))
+	db.session.add(Kanji(u'上級','joukyuu', 1))
+	db.session.add(Kanji(u'中級','chukyuu', 1))
+	db.session.add(Kanji(u'初級','shokyuu', 1))
+	db.session.add(Kanji(u'野球','yakyuu', 1))
+	db.session.add(Kanji(u'結局','kekkyoku', 1))
+	db.session.add(Kanji(u'苦手','nigate', 1))
+	db.session.add(Kanji('ー県','ken', 1))
+	db.session.add(Kanji('金庫','kinko', 1))
+	db.session.add(Kanji('不幸','fukou', 1))
+	db.session.add(Kanji('大根','daikon', 1))
+	db.session.add(Kanji('屋根','yane', 1))
+	db.session.add(Kanji('球','tama', 1))
+	db.session.add(Kanji('苦しい','kurushii', 1))
+	db.session.add(Kanji('苦しむ','kurushimu', 1))
+	db.session.add(Kanji('苦い','nigai', 1))
+	db.session.add(Kanji('苦る','nigaru', 1))
+	db.session.add(Kanji('血','ketsu', 1))
+	db.session.add(Kanji('湖','mizuumi', 1))
+	db.session.add(Kanji('幸い','saiwai', 1))
+	db.session.add(Kanji('幸せ','shiawase', 1))
+	db.session.add(Kanji('祭る','matsuru', 1))
+	db.session.add(Kanji('祭り','matsuri', 1))
+	db.session.add(Kanji('皿','sara', 1))
 	#Commented out for now. Will fill in with more later
 	'''
 	db.session.add(Kanji(30, '','', 0))

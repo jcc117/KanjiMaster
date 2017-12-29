@@ -262,38 +262,38 @@ function quit()
 function quiz1()
 {
 	dif = 1;
-	makeRequest('POST', "/kanji/", parseData, 1);
+	makeRequest('POST', "/kanji/", parseData, 200, 1);
 	//console.log('plz');
 }
 
 function quiz2()
 {
 	dif = 2;
-	makeRequest('POST', "/kanji/", parseData, 2);
+	makeRequest('POST', "/kanji/", parseData, 200, 2);
 }
 
 function quiz3()
 {
 	dif = 3;
-	makeRequest('POST', "/kanji/", parseData, 3);
+	makeRequest('POST', "/kanji/", parseData, 200, 3);
 }
 
 function quiz4()
 {
 	dif = 4;
-	makeRequest('POST', "/kanji/", parseData, 4);
+	makeRequest('POST', "/kanji/", parseData, 200, 4);
 }
 
 function quiz5()
 {
 	dif = 5;
-	makeRequest('POST', "/kanji/", parseData, 5);
+	makeRequest('POST', "/kanji/", parseData, 200, 5);
 }
 
 function quiz6()
 {
 	dif = 6;
-	makeRequest('POST', "/kanji/", parseData, 6);
+	makeRequest('POST', "/kanji/", parseData, 200, 6);
 }
 
 //Initialize page setup on load time

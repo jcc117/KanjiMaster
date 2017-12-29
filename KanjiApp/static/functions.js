@@ -65,7 +65,7 @@ function quiz_reset()
 }
 
 //Make a function to dynamically handle all requests
-function makeRequest(method, to, action,data)
+function makeRequest(method, to, action, retcode, data)
 {
 	//alert("making request");
 	var httpRequest = new XMLHttpRequest();
@@ -75,7 +75,7 @@ function makeRequest(method, to, action,data)
 		return false;
 	}
 
-	httpRequest.onreadystatechange = makeHandler(httpRequest, action);
+	httpRequest.onreadystatechange = makeHandler(httpRequest, retcode, action);
 	//console.log(httpRequest.onreadystatechange);
 	httpRequest.open(method, to);
 	if(data)
@@ -90,14 +90,14 @@ function makeRequest(method, to, action,data)
 }
 
 //Return a handler for a general request
-function makeHandler(httpRequest, action)
+function makeHandler(httpRequest, retcode, action)
 {
 	function handler()
 	{
 		if(httpRequest.readyState === XMLHttpRequest.DONE)
 		{
 			//alert("done");
-			if(httpRequest.status === 200)
+			if(httpRequest.status === retcode)
 			{
 				//if(httpRequest.responseText)
 					//console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
