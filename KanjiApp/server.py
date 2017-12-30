@@ -26,6 +26,8 @@ parser = reqparse.RequestParser()
 parser.add_argument('score', type=int)
 parser.add_argument('dif', type=int)
 parser.add_argument('total', type=int)
+parser.add_argument('kanji', type=str)
+parser.add_argument('romaji', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -155,15 +157,21 @@ class R_Kanji(Resource):
 	def get(self):
 		return None
 
+	#Post new a new kanji combination to the database
 	def post(self):
 		if g.user:
-			data = request.json
-			kanji = ''
-			romaji = ''
-			difficulty = 0
+			data = parser.parse_args()
+
+			#Check for argument errors
+			if not data['dif'] or not data['kanji'] or not data['romaji']:
+				return json.dumps("Not enough arguments"), 400
+
+			kanji = data['kanji']
+			romaji = data['romaji']
+			difficulty = data['dif']
 
 			db.session.add(Kanji(kanji, romaji, difficulty))
-		return None
+		return json.dumps("Unauthorized"), 401
 
 #Restful Report Resource
 class R_Report(Resource):
@@ -183,6 +191,8 @@ class R_Report(Resource):
 			#Parse the request
 			#print("Got data")
 			data = parser.parse_args()
+
+			#Check for argument errors
 			if not data['dif'] or not data['score'] or not data['total']:
 				return json.dumps("Not enough arguments"), 400
 			#print("Data is good")
