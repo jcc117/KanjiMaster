@@ -181,11 +181,11 @@ class R_Report(Resource):
 	def post(self):
 		if g.user:
 			#Parse the request
-			print("Got data")
+			#print("Got data")
 			data = parser.parse_args()
 			if not data['dif'] or not data['score'] or not data['total']:
 				return json.dumps("Not enough arguments"), 400
-			print("Data is good")
+			#print("Data is good")
 			difficulty = data['dif']
 			num_correct = data['score']
 			num_total = data['total']
