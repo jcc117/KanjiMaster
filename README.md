@@ -35,5 +35,5 @@ TODO:
 	Fix issues, 
 	Add audio settings, 
 	Add kanji to the list: might wait til encoding is figured out,
-	Modify into a RESTful api
+	Modify user stuff into restful api
 
