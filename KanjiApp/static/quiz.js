@@ -196,6 +196,7 @@ function show_results()
 	console.log("total: " + total);
 	send_report(score, total, dif);
 	switch_to_r();
+	refresh();
 }
 
 function correct()
@@ -295,6 +296,3 @@ function quiz6()
 	dif = 6;
 	makeRequest('POST', "/kanji/", parseData, 200, 6, 'application/json');
 }
-
-//Initialize page setup on load time
-window.addEventListener("load", setup, true);

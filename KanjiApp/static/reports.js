@@ -5,6 +5,13 @@ var total_q = 0;
 var scores = 0;
 var num_reports = 0;
 
+function r_setup()
+{
+	//Get the reports for the page
+	get_report();
+
+	$('#refresh').click(function(){ refresh(); });
+}
 //Event triggered by finishing quiz
 function send_report(score, total, dif)
 {
@@ -89,3 +96,21 @@ function get_overall()
 	//Add the div to the page
 	overall.appendChild(elem);
 }
+
+//Refresh the reports you have on the page
+function refresh()
+{
+	//Clear out the page
+	document.getElementById('ind').innerHTML = '';
+	document.getElementById('overall').innerHTML = '';
+
+	total_q = 0;
+	scores = 0;
+	num_reports = 0;
+
+	//Repopulate it
+	get_report();
+}
+
+//Initialize page setup on load time
+window.addEventListener("load", r_setup, true);
