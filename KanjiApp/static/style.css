@@ -180,3 +180,13 @@ input[type=password]:focus
 	margin-top: 10px;
 	text-align: left;
 }
+
+.report
+{
+	text-align: left;
+	background-color: #f5f5ef;
+	color: black;
+	border: 1px solid black;
+	border-radius: 2px;
+	padding: 5px;
+}

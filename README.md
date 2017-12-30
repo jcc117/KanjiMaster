@@ -28,8 +28,7 @@ Installation instructions
 This is known to work on windows. Results on other operating systems are unknown.
 
 TODO:
-	Site Tutorial, 
-	Progress Reports, 
+	Site Tutorial,  
 	User Settings, 
 	Kanji Sheets, 
 	Add more content on the site in general, 

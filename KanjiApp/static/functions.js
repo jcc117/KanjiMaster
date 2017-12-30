@@ -27,6 +27,9 @@ function setup()
 		this.animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
 		.animate({ bottom: "-= 60" }, {duration: 150, easing: "easeInSine"});
 	});*/
+
+	//Temporary
+	get_report();
 }
 
 //Switch visibility of which screen you are looking at
@@ -65,7 +68,7 @@ function quiz_reset()
 }
 
 //Make a function to dynamically handle all requests
-function makeRequest(method, to, action, retcode, data)
+function makeRequest(method, to, action, retcode, data, encoding)
 {
 	//alert("making request");
 	var httpRequest = new XMLHttpRequest();
@@ -80,7 +83,7 @@ function makeRequest(method, to, action, retcode, data)
 	httpRequest.open(method, to);
 	if(data)
 	{
-		httpRequest.setRequestHeader('Content-Type', 'application/json');
+		httpRequest.setRequestHeader('Content-Type', encoding);
 		httpRequest.send(data);
 	}
 	else
@@ -99,15 +102,15 @@ function makeHandler(httpRequest, retcode, action)
 			//alert("done");
 			if(httpRequest.status === retcode)
 			{
-				//if(httpRequest.responseText)
-					//console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
-				//else
-					//alert("I got nothin");
+				if(httpRequest.responseText)
+					console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
+				else
+					alert("I got nothin");
 				action(httpRequest.responseText);
 			}
 			else
 			{
-				alert("There was a problem with the request");
+				alert(httpRequest.status + ":There was a problem with the request");
 				console.log("Error: " + JSON.parse(httpRequest.responseText));
 			}
 		}
