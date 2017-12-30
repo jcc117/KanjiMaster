@@ -12,11 +12,14 @@ function setup()
 	document.getElementById("g6").addEventListener("click", quiz6, true);
 	document.getElementById("qspan").addEventListener("click", switch_to_q, true);
 	document.getElementById("rspan").addEventListener("click", switch_to_r, true);
+	document.getElementById("kspan").addEventListener("click", switch_to_k, true);
 
 	var rep = document.getElementById("reports");
 	rep.style.display = "none";
 	var game = document.getElementById("game");
 	game.style.display = "none";
+	var sheets = document.getElementById("sheets");
+	sheets.style.display = "none";
 
 }
 
@@ -26,10 +29,12 @@ function switch_to_q()
 	var q = document.getElementById("quiz");
 	var r = document.getElementById("reports");
 	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
 
 	qu.style.display = "none";
 	q.style.display = "block";
 	r.style.display = "none";
+	k.style.display = "none";
 
 	quiz_reset();
 }
@@ -38,10 +43,27 @@ function switch_to_r()
 	var q = document.getElementById("quiz");
 	var r = document.getElementById("reports");
 	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
 
 	qu.style.display = "none";
 	r.style.display = "block";
 	q.style.display = "none";
+	k.style.display = "none";
+
+	quiz_reset();
+}
+//Swtich to the kanjisheets
+function switch_to_k()
+{
+	var q = document.getElementById("quiz");
+	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
+
+	qu.style.display = "none";
+	r.style.display = "none";
+	q.style.display = "none";
+	k.style.display = "block";
 
 	quiz_reset();
 }

@@ -16,7 +16,7 @@ function parseData(data)
 	var rData = JSON.parse(JSON.parse(data));
 	var pData = rData.filter(filter_dif);
 
-	console.log("pData: " + pData);
+	//console.log("pData: " + pData);
 
 	for(i in pData)
 	{
