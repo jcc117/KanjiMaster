@@ -25,7 +25,7 @@ db.init_app(app)
 parser = reqparse.RequestParser()
 parser.add_argument('score', type=int)
 parser.add_argument('dif', type=int)
-parser.add_arugment('total', type=int)
+parser.add_argument('total', type=int)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -166,15 +166,14 @@ class R_Kanji(Resource):
 		return None
 
 #Restful Report Resource
-class Report(Resource):
+class R_Report(Resource):
 	#Get all reports for a user
 	def get(self):
 		if g.user:
-			results = Report.query.filter_by(userID = g.user.userID)
+			results = Report.query.filter_by(userID = g.user.userID).all()
 			rv = []
 			for i in range(0, len(results)):
-				string = "{}:{}:{}:{}".format(results[i].date, results[i].difficulty, results[i].num_total, results[i].num_correct)
-				rv.append(string)
+				rv.append({"date":str(results[i].date), "dif":results[i].difficulty, "total":results[i].num_total, "score":results[i].num_correct})
 			return json.dumps(rv), 200
 		return json.dumps("Unauthorized"), 401
 
@@ -182,20 +181,25 @@ class Report(Resource):
 	def post(self):
 		if g.user:
 			#Parse the request
+			print("Got data")
 			data = parser.parse_args()
+			if not data['dif'] or not data['score'] or not data['total']:
+				return json.dumps("Not enough arguments"), 400
+			print("Data is good")
 			difficulty = data['dif']
 			num_correct = data['score']
 			num_total = data['total']
 
 			#Add the report to the user
 			db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
+			db.session.commit()
 			return json.dumps("Resource created"), 201
 		return json.dumps("Unauthorized"), 401
 
 		
 
-#api.add_resource(Kanji, "/kanji/")
-api.add_resource(Report, "/report/")
+#api.add_resource(R_Kanji, "/kanji/")
+api.add_resource(R_Report, "/report/")
 
 def add_data():
 	db.session.add(Kanji(u'海岸','kaigan', 1))
