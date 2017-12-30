@@ -191,6 +191,7 @@ input[type=password]:focus
 	padding: 5px;
 }
 
+/*Loader styling*/
 #loader
 {
 	width: 100%;
@@ -198,4 +199,15 @@ input[type=password]:focus
 	background: url('loading.gif') center no-repeat #fff;
 	z-index: 99999;
 	position: fixed;
+}
+
+/*Kanji sheet*/
+.row
+{
+
+}
+
+.column
+{
+	
 }

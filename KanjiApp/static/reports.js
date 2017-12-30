@@ -29,7 +29,7 @@ function do_nothing()
 //Ask for all reports for a user
 function get_report()
 {
-	makeRequest('GET', '/report/', handleReports, 200, 'application/x-www-form-urlencoded');
+	makeRequest('GET', '/report/', handleReports, 200);
 }
 
 //Handle all of the reports from the request
