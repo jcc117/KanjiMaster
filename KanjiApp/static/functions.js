@@ -18,18 +18,6 @@ function setup()
 	var game = document.getElementById("game");
 	game.style.display = "none";
 
-	//timeoutID = window.setTimeout(poller, timeout);
-
-	//Set the animation
-	/*var pic = document.getElementById("sticker");
-	pic.addEventListener("mouseenter", function(){
-		//if((this).is(':animated')) {return;}
-		this.animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
-		.animate({ bottom: "-= 60" }, {duration: 150, easing: "easeInSine"});
-	});*/
-
-	//Temporary
-	get_report();
 }
 
 //Switch visibility of which screen you are looking at
@@ -133,4 +121,9 @@ jQuery(function($){
 });
 
 
+$(window).on('load', function(){
+	$('#loader').hide();
+});
 
+//Initialize page setup on load time
+window.addEventListener("load", setup, true);
