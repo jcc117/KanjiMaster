@@ -113,8 +113,13 @@ def sign_up():
 			error = "Passwords do not match"
 		#Check for taken username
 		elif get_user_id(request.form['name']) is None:
-			db.session.add(User(request.form['name'], request.form['pass']))
-			db.session.commit()
+			#Catch any possible errors
+			try:
+				db.session.add(User(request.form['name'], request.form['pass']))
+				db.session.commit()
+			except:
+				return json.dumps("Bad request"), 400
+
 			return redirect(url_for('rootpage'))
 		else:
 			error = "That username is already taken"
@@ -154,8 +159,18 @@ def get_kanji():
 #Lets make this restful
 #Restful Kanji Resource
 class R_Kanji(Resource):
+	#Return all kanji to the user
 	def get(self):
-		return None
+		if g.user:
+			results = Kanji.query.all()
+
+			#Format for sending back to user
+			rv = []
+			for i in range(0, len(results)):
+				rv.append({"kanji":results[i].kanji, "romaji":results[i].romaji})
+			return json.dumps(rv), 200
+
+		return json.dumps('Unauthorized'), 401
 
 	#Post new a new kanji combination to the database
 	def post(self):
@@ -170,7 +185,13 @@ class R_Kanji(Resource):
 			romaji = data['romaji']
 			difficulty = data['dif']
 
-			db.session.add(Kanji(kanji, romaji, difficulty))
+			#Catch any possible input errors
+			try:
+				db.session.add(Kanji(kanji, romaji, difficulty))
+				db.session.commit()
+			except:
+				return json.dumps("Bad request"), 400
+
 		return json.dumps("Unauthorized"), 401
 
 #Restful Report Resource
@@ -201,8 +222,12 @@ class R_Report(Resource):
 			num_total = data['total']
 
 			#Add the report to the user
-			db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
-			db.session.commit()
+			try:
+				db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
+				db.session.commit()
+			except:
+				return json.dumps("Bad request"), 400
+
 			return json.dumps("Resource created"), 201
 		return json.dumps("Unauthorized"), 401
 
