@@ -13,13 +13,16 @@ function parseData(data)
 {
 	//document.write("returned: " + JSON.parse(data));
 	//alert(data);
-	var pData = JSON.parse(data);
+	var rData = JSON.parse(JSON.parse(data));
+	var pData = rData.filter(filter_dif);
+
+	console.log("pData: " + pData);
 
 	for(i in pData)
 	{
-		var result = pData[i].split(":");
-		kanji[i] = result[0];
-		romaji[i] = result[1];
+		//var result = pData[i].split(":");
+		kanji[i] = pData[i]['kanji'];
+		romaji[i] = pData[i]['romaji'];
 		//console.log(result[1]);
 		//console.log("kanji:" + kanji[i] + ", romaji:" + romaji[i]);
 	}
@@ -41,6 +44,11 @@ function parseData(data)
 
 	quiz_setup();
 	
+}
+
+function filter_dif(item)
+{
+	return item['dif'] === dif;
 }
 
 //Take a quiz after all information is gathered
@@ -263,36 +271,36 @@ function quit()
 function quiz1()
 {
 	dif = 1;
-	makeRequest('POST', "/kanji/", parseData, 200, 1, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 	//console.log('plz');
 }
 
 function quiz2()
 {
 	dif = 2;
-	makeRequest('POST', "/kanji/", parseData, 200, 2, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz3()
 {
 	dif = 3;
-	makeRequest('POST', "/kanji/", parseData, 200, 3, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz4()
 {
 	dif = 4;
-	makeRequest('POST', "/kanji/", parseData, 200, 4, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz5()
 {
 	dif = 5;
-	makeRequest('POST', "/kanji/", parseData, 200, 5, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz6()
 {
 	dif = 6;
-	makeRequest('POST', "/kanji/", parseData, 200, 6, 'application/json');
+	makeRequest('GET', "/kanji/", parseData, 200);
 }

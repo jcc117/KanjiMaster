@@ -136,6 +136,7 @@ def logout():
 		return redirect(url_for('rootpage'))
 
 #Get the kanji for a specific category
+'''
 @app.route("/kanji/", methods = ['POST'])
 def get_kanji():
 	if g.user:
@@ -155,6 +156,7 @@ def get_kanji():
 
 	else:
 		abort(401)
+'''
 
 #Lets make this restful
 #Restful Kanji Resource
@@ -167,7 +169,7 @@ class R_Kanji(Resource):
 			#Format for sending back to user
 			rv = []
 			for i in range(0, len(results)):
-				rv.append({"kanji":results[i].kanji, "romaji":results[i].romaji})
+				rv.append({"kanji":results[i].kanji, "romaji":results[i].romaji, "dif":results[i].difficulty})
 			return json.dumps(rv), 200
 
 		return json.dumps('Unauthorized'), 401
@@ -233,7 +235,7 @@ class R_Report(Resource):
 
 		
 
-#api.add_resource(R_Kanji, "/kanji/")
+api.add_resource(R_Kanji, "/kanji/")
 api.add_resource(R_Report, "/report/")
 
 def add_data():
