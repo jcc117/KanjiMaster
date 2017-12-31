@@ -142,10 +142,17 @@ jQuery(function($){
 	$('.choice').mouseenter(function(){audio.load(); audio.play();});
 });
 
-
+//Loader image
 $(window).on('load', function(){
-	$('#loader').hide();
+	$('#loader').fadeOut(500);
 });
+
+//Ajax loader image
+$(document).ajaxStart(function(){
+	$('#loader').show();
+}).ajaxStop(function(){
+	$('#loader').fadeOut(500);
+})
 
 //Initialize page setup on load time
 window.addEventListener("load", setup, true);
