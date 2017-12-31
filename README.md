@@ -29,10 +29,9 @@ This is known to work on windows. Results on other operating systems are unknown
 
 TODO:
 	Site Tutorial,  
-	User Settings, 
-	Kanji Sheets, 
+	User Settings,  
 	Add more content on the site in general, 
-	Fix issues, 
+	Set Load screen for ajax requests (in a clean way), 
 	Add audio settings, 
 	Add kanji to the list: might wait til encoding is figured out,
 	Modify user stuff into restful api
