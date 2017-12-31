@@ -13,6 +13,7 @@ function setup()
 	document.getElementById("qspan").addEventListener("click", switch_to_q, true);
 	document.getElementById("rspan").addEventListener("click", switch_to_r, true);
 	document.getElementById("kspan").addEventListener("click", switch_to_k, true);
+	document.getElementById("sspan").addEventListener("click", switch_to_s, true);
 
 	var rep = document.getElementById("reports");
 	rep.style.display = "none";
@@ -20,6 +21,8 @@ function setup()
 	game.style.display = "none";
 	var sheets = document.getElementById("sheets");
 	sheets.style.display = "none";
+	var set = document.getElementById("settings");
+	set.style.display = "none";
 
 }
 
@@ -30,11 +33,13 @@ function switch_to_q()
 	var r = document.getElementById("reports");
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
 
 	qu.style.display = "none";
 	q.style.display = "block";
 	r.style.display = "none";
 	k.style.display = "none";
+	s.style.display = "none";
 
 	quiz_reset();
 }
@@ -44,11 +49,13 @@ function switch_to_r()
 	var r = document.getElementById("reports");
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
 
 	qu.style.display = "none";
 	r.style.display = "block";
 	q.style.display = "none";
 	k.style.display = "none";
+	s.style.display = "none";
 
 	quiz_reset();
 }
@@ -59,11 +66,30 @@ function switch_to_k()
 	var r = document.getElementById("reports");
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
 
 	qu.style.display = "none";
 	r.style.display = "none";
 	q.style.display = "none";
 	k.style.display = "block";
+	s.style.display = "none";
+
+	quiz_reset();
+}
+//Switch to user settings
+function switch_to_s()
+{
+	var q = document.getElementById("quiz");
+	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
+
+	qu.style.display = "none";
+	r.style.display = "none";
+	q.style.display = "none";
+	k.style.display = "none";
+	s.style.display = "block";
 
 	quiz_reset();
 }
