@@ -80,3 +80,15 @@ myInput2.onkeyup = function() {
     msg.classList.add("valid");
   }
 }
+
+//Loader image
+$(window).on('load', function(){
+  $('#loader').fadeOut(500);
+});
+
+//Ajax loader image
+$(document).ajaxStart(function(){
+  $('#loader').show();
+}).ajaxStop(function(){
+  $('#loader').fadeOut(500);
+})
