@@ -111,11 +111,20 @@ def sign_up():
 		#Check the passwords match
 		elif request.form['pass'] != request.form['pass2']:
 			error = "Passwords do not match"
+		#Check for a first name
+		elif not request.form['fname']:
+			error = "No first name given"
+		#Check for a last name
+		elif not request.form['lname']:
+			error = "No last name given"
+		#Check for an email
+		elif not request.form['email']:
+			error = "No email given"
 		#Check for taken username
 		elif get_user_id(request.form['name']) is None:
 			#Catch any possible errors
 			try:
-				db.session.add(User(request.form['name'], request.form['pass']))
+				db.session.add(User(request.form['name'], request.form['pass'], request.form['fname'], request.form['lname'], request.form['email']))
 				db.session.commit()
 			except:
 				return json.dumps("Bad request"), 400

@@ -9,10 +9,16 @@ class User(db.Model):
 	userID = db.Column(db.String(300), primary_key = True)
 	password = db.Column(db.String(300), nullable = False)
 	reports = db.relationship('Report', backref = 'user', lazy = 'dynamic')
+	fname = db.Column(db.String(300), nullable = False)
+	lname = db.Column(db.String(300), nullable = False)
+	email = db.Column(db.String(300), nullable = False)
 
-	def __init__(self, id, passw):
+	def __init__(self, id, passw, fname, lname, email):
 		self.userID = id
 		self.password = bcrypt.encrypt(passw)
+		self.fname = fname
+		self.lname = lname
+		self.email = email
 
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
