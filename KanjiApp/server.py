@@ -28,6 +28,12 @@ parser.add_argument('dif', type=int)
 parser.add_argument('total', type=int)
 parser.add_argument('kanji', type=str)
 parser.add_argument('romaji', type=str)
+parser.add_argument('fname', type=str)
+parser.add_argument('lname', type=str)
+parser.add_argument('email', type=str)
+parser.add_argument('userID', type=str)
+parser.add_argument('pass', type=str)
+parser.add_argument('pass2', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -93,45 +99,11 @@ def home(userID):
 
 
 #Route to the signup page, redirect to profile page if in session	
-@app.route("/sign_up/", methods = ['GET', 'POST'])
+@app.route("/sign_up/", methods = ['GET'])
 def sign_up():
 	if g.user:
 		return redirect(url_for('home', userID=g.user.userID))
 	error = None
-	if request.method == 'POST':
-		#Check for username
-		if not request.form['name']:
-			error = "Please enter a username"
-		#Check for a password
-		elif not request.form['pass']:
-			error = "Please enter a password"
-		#Check for a reentered password
-		elif not request.form['pass2']:
-			error = "Please reenter your password"
-		#Check the passwords match
-		elif request.form['pass'] != request.form['pass2']:
-			error = "Passwords do not match"
-		#Check for a first name
-		elif not request.form['fname']:
-			error = "No first name given"
-		#Check for a last name
-		elif not request.form['lname']:
-			error = "No last name given"
-		#Check for an email
-		elif not request.form['email']:
-			error = "No email given"
-		#Check for taken username
-		elif get_user_id(request.form['name']) is None:
-			#Catch any possible errors
-			try:
-				db.session.add(User(request.form['name'], request.form['pass'], request.form['fname'], request.form['lname'], request.form['email']))
-				db.session.commit()
-			except:
-				return json.dumps("Bad request"), 400
-
-			return redirect(url_for('rootpage'))
-		else:
-			error = "That username is already taken"
 	return render_template("signup.html", error = error)
 
 #Logout
@@ -242,10 +214,64 @@ class R_Report(Resource):
 			return json.dumps("Resource created"), 201
 		return json.dumps("Unauthorized"), 401
 
+class R_User(Resource):
+	#Get all of the information about the current user
+	def get(self):
+		if g.user:
+			rv = []
+			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email})
+			return json.dumps(rv), 200
+		else:
+			return json.dumps("Unauthorized"), 401
+
+	#Sign up a new user
+	def post(self):
+		if not g.user:
+			error = None
+			data = parser.parse_args()
+			#Check for username
+			if not data['userID']:
+				error = "Please enter a username"
+			#Check for a password
+			elif not data['pass']:
+				error = "Please enter a password"
+			#Check for a reentered password
+			elif not data['pass2']:
+				error = "Please reenter your password"
+			#Check the passwords match
+			elif data['pass'] != data['pass2']:
+				error = "Passwords do not match"
+			#Check for a first name
+			elif not data['fname']:
+				error = "No first name given"
+			#Check for a last name
+			elif not data['lname']:
+				error = "No last name given"
+			#Check for an email
+			elif not data['email']:
+				error = "No email given"
+			#Check for taken username
+			elif get_user_id(data['userID']) is None:
+				#Catch any possible errors
+				try:
+					db.session.add(User(data['userID'], data['pass'], data['fname'], data['lname'], data['email']))
+					db.session.commit()
+				except:
+					return json.dumps("Bad request"), 400
+
+				return json.dumps("success"), 201
+			else:
+				error = "That username is already taken"
+
+			return json.dumps(error), 400
+		else:
+			return json.dumps("Unauthorized action"), 401
+
 		
 
 api.add_resource(R_Kanji, "/kanji/")
 api.add_resource(R_Report, "/report/")
+api.add_resource(R_User, "/user/")
 
 def add_data():
 	db.session.add(Kanji(u'海岸','kaigan', 1))

@@ -92,3 +92,89 @@ $(document).ajaxStart(function(){
 }).ajaxStop(function(){
   $('#loader').fadeOut(500);
 })
+
+function signup()
+{
+  var userID = document.getElementById("name").value;
+  var password = document.getElementById("pass").value;
+  var fname = document.getElementById("fname").value;
+  var lname = document.getElementById("lname").value;
+  var email = document.getElementById("email").value;
+  var pass2 = document.getElementById("pass2").value;
+
+  var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2;
+
+  makeRequest("POST", "/user/", go_to_root, 201, data, 'application/x-www-form-urlencoded');
+}
+
+function go_to_root()
+{
+  makeRequest("GET", "/", do_nothing, 200);
+}
+
+function do_nothing()
+{
+
+}
+
+function setup()
+{
+  document.getElementById("signup").addEventListener("click", signup, true);
+}
+
+/*Taken from functions.js*/
+
+//Make a function to dynamically handle all requests
+function makeRequest(method, to, action, retcode, data, encoding)
+{
+  //alert("making request");
+  var httpRequest = new XMLHttpRequest();
+  if(!httpRequest)
+  {
+    alert("Requests are not supported");
+    return false;
+  }
+
+  httpRequest.onreadystatechange = makeHandler(httpRequest, retcode, action);
+  //console.log(httpRequest.onreadystatechange);
+  httpRequest.open(method, to);
+  if(data)
+  {
+    httpRequest.setRequestHeader('Content-Type', encoding);
+    httpRequest.send(data);
+  }
+  else
+  {
+    httpRequest.send();
+  }
+}
+
+//Return a handler for a general request
+function makeHandler(httpRequest, retcode, action)
+{
+  function handler()
+  {
+    if(httpRequest.readyState === XMLHttpRequest.DONE)
+    {
+      //alert("done");
+      if(httpRequest.status === retcode)
+      {
+        if(httpRequest.responseText)
+          console.log("recieved response text: " + JSON.parse(httpRequest.responseText));
+        else
+          alert("I got nothin");
+        action(httpRequest.responseText);
+      }
+      else
+      {
+        alert(httpRequest.status + ":There was a problem with the request");
+        console.log("Error: " + JSON.parse(httpRequest.responseText));
+      }
+    }
+  }
+  //alert("function returned");
+  return handler;
+}
+
+//Initialize page setup on load time
+window.addEventListener("load", setup, true);
