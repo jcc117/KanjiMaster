@@ -6,6 +6,7 @@
 	<script src={{url_for('static', filename = 'quiz.js')}} type="text/javascript"></script>
 	<script src={{url_for('static', filename = 'reports.js')}} type="text/javascript"></script>
 	<script src={{url_for('static', filename = 'kanjisheets.js')}} type="text/javascript"></script>
+	<script src={{url_for('static', filename = 'settings.js')}} type="text/javascript"></script>
 {% endblock %}
 	
 {% block body %}
@@ -101,18 +102,23 @@
 <!--User settings -->
 <section id="settings" display="none">
 	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/m_sticker_1.png')}}/></div>
-	<p>Change your user settings.</p>
-	<p>Username:</p>
-	<p>Email:</p>
-	<p>First Name:</p>
-	<p>Last Name:</p>
-	<p>Change Passord:</p>
-	<p>Old Password <input type='password'/></p>
-	<p>New Password <input type='password'/></p>
-	<p>Reenter New Password <input type='password'/></p>
-	<p>Music</p>
-	<br />
-	<input type='submit' value ="Save"/>
+	<div class="settings_container">
+		<h4>Change your user settings.</h4>
+		<h5>User ID:</h5>
+		<p id='userID'></p>
+		<h5>Email:</h5>
+		<p id='email'></p>
+		<p>Change Email: <input type='text' id='new_email'/></p>
+		<input type='submit' id='change_e' value="Save"/>
+		<h5>First Name:</h5>
+		<p id="fname"></p>
+		<h5>Last Name:</h5>
+		<p id="lname"></p>
+		<h5>Change Passord:</h5>
+		<a href={{url_for('change_pass')}}><input type='submit' id='change_p' value="Click Here to Change Your Password"/></a>
+		<h5>Music</h5>
+		<br />
+	</div>
 </section>
 
 

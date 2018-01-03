@@ -93,23 +93,15 @@ $(document).ajaxStart(function(){
   $('#loader').fadeOut(500);
 })
 
-function signup()
+function change()
 {
-  var userID = document.getElementById("name").value;
   var password = document.getElementById("pass").value;
-  var fname = document.getElementById("fname").value;
-  var lname = document.getElementById("lname").value;
-  var email = document.getElementById("email").value;
   var pass2 = document.getElementById("pass2").value;
+  var old_pass = document.getElementById("old").value;
 
-  var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2;
+  var data = "pass=" + password + "&pass2=" + pass2 + "&old_pass=" + old_pass;
 
-  makeRequest("POST", "/user/", go_to_root, 201, data, 'application/x-www-form-urlencoded');
-}
-
-function go_to_root()
-{
-  makeRequest("GET", "/", do_nothing, 200);
+  makeRequest("POST", "/change_pass/", do_nothing, 200, data, 'application/x-www-form-urlencoded');
 }
 
 function do_nothing()
@@ -119,7 +111,7 @@ function do_nothing()
 
 function setup()
 {
-  document.getElementById("signup").addEventListener("click", signup, true);
+  document.getElementById("change").addEventListener("click", change, true);
 }
 
 /*Taken from functions.js*/

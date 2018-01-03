@@ -14,15 +14,13 @@
 Enter your information below to sign up!
 <br />
 <div class="container">
-	<form method='post' action=''>
-		Enter a username:<input type='text' name='name'/><br />
+		Enter a username:<input type='text' id='name'/><br />
 		Enter a password:<input type='password' id="pass" name='pass' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" required/><br />
 		Reenter the password:<input type='password' id='pass2' name='pass2' required/><br />
-		Enter your first name:<input type='text' name='fname'/><br />
-		Enter your last name:<input type='text' name='lname'/><br />
-		Enter a valid email address:<input type='text' name='email'/><br />
-		<input type='submit' value='Submit'/>
-	</form>
+		Enter your first name:<input type='text'  id='fname' name='fname'/><br />
+		Enter your last name:<input type='text' name='lname' id='lname'/><br />
+		Enter a valid email address:<input type='text' name='email' id='email'/><br />
+		<input type='submit' value='Submit' id='signup'/>
 </div>
 <a href={{url_for('rootpage')}}>Log In</a>
 <div id="message">
