@@ -5,6 +5,7 @@
 {% block body %}
 <h3>Change Your Password</h3>
 <div class="container">
+		<p id='response'></p>
 		Enter Your Old Password:<input type='password' id="old" name="old" required/><br />
 		Enter a password:<input type='password' id="pass" name='pass' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" required/><br />
 		Reenter the password:<input type='password' id='pass2' name='pass2' required/><br />
