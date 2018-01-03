@@ -104,12 +104,23 @@ function signup()
 
   var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2;
 
-  makeRequest("POST", "/user/", go_to_root, 201, data, 'application/x-www-form-urlencoded');
+  makeRequest("POST", "/user/", display_sucess, 201, data, 'application/x-www-form-urlencoded');
 }
 
-function go_to_root()
+function display_sucess()
 {
-  makeRequest("GET", "/", do_nothing, 200);
+  //Display a success message
+  var message = document.getElementById('response');
+  message.innerHTML = "Success!";
+  message.classList.add('valid');
+
+  //Clear all fields
+  document.getElementById("name").value = '';
+  document.getElementById("pass").value = '';
+  document.getElementById("pass2").value = '';
+  document.getElementById("lname").value = '';
+  document.getElementById("fname").value = '';
+  document.getElementById("email").value = '';
 }
 
 function do_nothing()
@@ -167,8 +178,8 @@ function makeHandler(httpRequest, retcode, action)
       }
       else
       {
-        alert(httpRequest.status + ":There was a problem with the request");
-        console.log("Error: " + JSON.parse(httpRequest.responseText));
+        //alert(httpRequest.status + ":There was a problem with the request");
+        alert("Error: " + JSON.parse(httpRequest.responseText));
       }
     }
   }

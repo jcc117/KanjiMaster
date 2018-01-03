@@ -101,12 +101,20 @@ function change()
 
   var data = "pass=" + password + "&pass2=" + pass2 + "&old_pass=" + old_pass;
 
-  makeRequest("POST", "/change_pass/", do_nothing, 200, data, 'application/x-www-form-urlencoded');
+  makeRequest("POST", "/change_pass/", display_success, 200, data, 'application/x-www-form-urlencoded');
 }
 
-function do_nothing()
+function display_success()
 {
+  //Display a success message
+  var message = document.getElementById('response');
+  message.innerHTML = "Success!";
+  message.classList.add('valid');
 
+  //Clear all fields
+  document.getElementById("pass").value = '';
+  document.getElementById("pass2").value = '';
+  document.getElementById("old").value = '';
 }
 
 function setup()
@@ -159,8 +167,8 @@ function makeHandler(httpRequest, retcode, action)
       }
       else
       {
-        alert(httpRequest.status + ":There was a problem with the request");
-        console.log("Error: " + JSON.parse(httpRequest.responseText));
+        //alert(httpRequest.status + ":There was a problem with the request");
+        alert("Error: " + JSON.parse(httpRequest.responseText));
       }
     }
   }
