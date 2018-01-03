@@ -15,7 +15,9 @@ function change_email()
 //Show an update message for a successful change of information
 function display_success()
 {
-
+	var message = document.getElementById("response").
+	message.innerHTML = "Success!";
+	message.classList.add('valid');
 }
 
 //Set up all of the info about the user
