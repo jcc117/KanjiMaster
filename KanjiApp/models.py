@@ -23,6 +23,9 @@ class User(db.Model):
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
 
+	def reset_password(self, passw):
+		self.password = bcrypt.encrypt(passw)
+
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)
 	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)

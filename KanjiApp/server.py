@@ -34,6 +34,7 @@ parser.add_argument('email', type=str)
 parser.add_argument('userID', type=str)
 parser.add_argument('pass', type=str)
 parser.add_argument('pass2', type=str)
+parser.add_argument('old_pass', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -115,6 +116,31 @@ def logout():
 	#If no one is in session, redirect to the root page
 	else:
 		return redirect(url_for('rootpage'))
+
+#Change the user's password
+@app.route("/change_pass/", methods = ['GET', 'POST'])
+def change_pass():
+	if g.user:
+		if request.method == 'POST':
+			data = parser.parse_args()
+			if data['pass'] is None:
+				return json.dumps("No password given"), 400
+			elif data['pass2'] is None:
+				return json.dumps("Restate password"), 400
+			elif data['old_pass'] is None:
+				return json.dumps("Type in your old password"), 400
+			elif not g.user.validate_password(data['old_pass']):
+				return json.dumps("Old password incorrect"), 400
+			elif data['pass'] == data['pass2']:
+				g.user.reset_password(data['pass'])
+				db.session.commit()
+				return json.dumps("Success"), 200
+			else:
+				return json.dumps("New passwords do not match"), 400
+
+		else:
+			return render_template("change_pass.html")
+	return redirect(url_for('rootpage'))
 
 #Get the kanji for a specific category
 '''

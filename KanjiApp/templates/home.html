@@ -108,16 +108,14 @@
 		<p id='userID'></p>
 		<h5>Email:</h5>
 		<p id='email'></p>
-		<input type='submit' id='change_e' value="Change Email"/>
+		<p>Change Email: <input type='text' id='new_email'/></p>
+		<input type='submit' id='change_e' value="Save"/>
 		<h5>First Name:</h5>
 		<p id="fname"></p>
 		<h5>Last Name:</h5>
 		<p id="lname"></p>
 		<h5>Change Passord:</h5>
-		<p>Old Password <input type='password'/></p>
-		<p>New Password <input type='password'/></p>
-		<p>Reenter New Password <input type='password'/></p>
-		<input  type='submit' id='chang_p' value="Save"/>
+		<a href={{url_for('change_pass')}}><input type='submit' id='change_p' value="Click Here to Change Your Password"/></a>
 		<h5>Music</h5>
 		<br />
 	</div>
