@@ -142,6 +142,20 @@ def change_pass():
 			return render_template("change_pass.html")
 	return redirect(url_for('rootpage'))
 
+#Change a user's email
+@app.route("/change_email/", methods = ['POST'])
+def change_email():
+	if g.user:
+		data = parser.parse_args()
+		if data['email']:
+			g.user.new_email(data['email'])
+			db.session.commit()
+			return json.dumps("Success"), 200
+		else:
+			return json.dumps("No new email given"), 400
+	else:
+		return json.dumps("Unauthorized action"), 401
+
 #Get the kanji for a specific category
 '''
 @app.route("/kanji/", methods = ['POST'])

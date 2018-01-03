@@ -26,6 +26,9 @@ class User(db.Model):
 	def reset_password(self, passw):
 		self.password = bcrypt.encrypt(passw)
 
+	def new_email(self, email):
+		self.email = email
+
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)
 	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)
