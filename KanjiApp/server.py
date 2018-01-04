@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 #Main server file
 
 import os
@@ -8,6 +10,9 @@ from flask_restful import reqparse, abort, Api, Resource
 from models import db, User, Report, Kanji
 
 from datetime import datetime
+
+import win_unicode_console
+win_unicode_console.enable()
 
 app = Flask(__name__)
 api = Api(app)
@@ -191,6 +196,7 @@ class R_Kanji(Resource):
 			rv = []
 			for i in range(0, len(results)):
 				rv.append({"kanji":results[i].kanji, "romaji":results[i].romaji, "dif":results[i].difficulty})
+			print(rv)
 			return json.dumps(rv), 200
 
 		return json.dumps('Unauthorized'), 401
