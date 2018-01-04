@@ -12,12 +12,12 @@ function change_email()
 	makeRequest("POST", "/change_email/", display_success, 200, data, 'application/x-www-form-urlencoded');
 }
 
-//Request to change password
-function change_password()
+//Show an update message for a successful change of information
+function display_success()
 {
-	var data = "password=" + document.getElementById("pass2").value;
-
-	makeRequest("POST", "/change_pass/", display_success, 200, data, 'application/x-www-form-urlencoded');
+	var message = document.getElementById("response").
+	message.innerHTML = "Success!";
+	message.classList.add('valid');
 }
 
 //Set up all of the info about the user
@@ -31,6 +31,10 @@ function setup_info(data)
 	document.getElementById("email").innerHTML = pData[0]['email'];
 	document.getElementById("fname").innerHTML = pData[0]['fname'];
 	document.getElementById("lname").innerHTML = pData[0]['lname'];
+
+	//Add event listeners for change buttons
+	document.getElementById("change_e").addEventListener("click", change_email, true);
+	document.getElementById("change_p").addEventListener("click", change_password, true);
 }
 
 window.addEventListener("load", s_setup, true);

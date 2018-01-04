@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 #Main server file
 
 import os
@@ -8,6 +10,9 @@ from flask_restful import reqparse, abort, Api, Resource
 from models import db, User, Report, Kanji
 
 from datetime import datetime
+
+import win_unicode_console
+win_unicode_console.enable()
 
 app = Flask(__name__)
 api = Api(app)
@@ -142,6 +147,20 @@ def change_pass():
 			return render_template("change_pass.html")
 	return redirect(url_for('rootpage'))
 
+#Change a user's email
+@app.route("/change_email/", methods = ['POST'])
+def change_email():
+	if g.user:
+		data = parser.parse_args()
+		if data['email']:
+			g.user.new_email(data['email'])
+			db.session.commit()
+			return json.dumps("Success"), 200
+		else:
+			return json.dumps("No new email given"), 400
+	else:
+		return json.dumps("Unauthorized action"), 401
+
 #Get the kanji for a specific category
 '''
 @app.route("/kanji/", methods = ['POST'])
@@ -177,6 +196,7 @@ class R_Kanji(Resource):
 			rv = []
 			for i in range(0, len(results)):
 				rv.append({"kanji":results[i].kanji, "romaji":results[i].romaji, "dif":results[i].difficulty})
+			print(rv)
 			return json.dumps(rv), 200
 
 		return json.dumps('Unauthorized'), 401
