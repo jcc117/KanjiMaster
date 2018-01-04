@@ -277,30 +277,35 @@ function quiz1()
 
 function quiz2()
 {
-	dif = 2;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	alert("That is not yet supported");
+	/*dif = 2;
+	makeRequest('GET', "/kanji/", parseData, 200);*/
 }
 
 function quiz3()
 {
-	dif = 3;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	alert("That is not yet supported");
+	/*dif = 3;
+	makeRequest('GET', "/kanji/", parseData, 200);*/
 }
 
 function quiz4()
 {
-	dif = 4;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	alert("That is not yet supported");
+	/*dif = 4;
+	makeRequest('GET', "/kanji/", parseData, 200);*/
 }
 
 function quiz5()
 {
-	dif = 5;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	alert("That is not yet supported");
+	/*dif = 5;
+	makeRequest('GET', "/kanji/", parseData, 200);*/
 }
 
 function quiz6()
 {
-	dif = 6;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	alert("That is not yet supported");
+	/*dif = 6;
+	makeRequest('GET', "/kanji/", parseData, 200);*/
 }
