@@ -9,6 +9,6 @@ f.write('#insert all of the data\n')
 f.write('def add_data():\n')
 
 for i in range(1, 501):
-	f.write('\tdb.session.add(Kanji(' + str(i) + ', \'\',\'\', 0))\n')
+	f.write('\tdb.session.add(Kanji(u\'\',\'\', ))\n')
 
 f.write('db.session.commit()\n')
