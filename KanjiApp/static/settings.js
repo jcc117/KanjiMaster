@@ -15,7 +15,7 @@ function change_email()
 //Show an update message for a successful change of information
 function display_success()
 {
-	var message = document.getElementById("response").
+	var message = document.getElementById("response");
 	message.innerHTML = "Success!";
 	message.classList.add('valid');
 }
@@ -34,7 +34,7 @@ function setup_info(data)
 
 	//Add event listeners for change buttons
 	document.getElementById("change_e").addEventListener("click", change_email, true);
-	document.getElementById("change_p").addEventListener("click", change_password, true);
+	//document.getElementById("change_p").addEventListener("click", change_password, true);
 }
 
 window.addEventListener("load", s_setup, true);
