@@ -3,6 +3,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<script src={{url_for('static', filename = 'functions.js')}} type="text/javascript"></script>
 	<script src={{url_for('static', filename = 'tutorial.js')}} type="text/javascript"></script>
+	<script src={{url_for('static', filename = 'quiz.js')}} type="text/javascript"></script>
+	<script src={{url_for('static', filename = 'reports.js')}} type="text/javascript"></script>
+	<script src={{url_for('static', filename = 'kanjisheets.js')}} type="text/javascript"></script>
+	<script src={{url_for('static', filename = 'settings.js')}} type="text/javascript"></script>
 {% endblock %}
 	
 {% block body %}
@@ -44,13 +48,22 @@
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/n_sticker_1.png')}} id='n_sticker'/></div>
 	<h4>Progress Reports</h5>
 	<p>Here you will find a report of how well you are doing on your kanji quizzes<p>
+	<input type="submit" id="refresh" value="Refresh"/>
+	<div class = "report_container">
+		<h5>Overall Statistics</h5>
+		<div id="overall">
+		</div>
+		<h5>Individual Reports</h5>
+		<div id="ind">
+		</div>	
+	</div>
 </section>
 
 <!--Store all of the game information-->
 <section id="game" display="none">
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='s_sticker'/></div>
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_2.png')}} id='s_sticker2'/></div>
-	<p>Match the kanji compound with it's reading.</p>
+	<p>Match the kanji compound with it's reading by clicking on the correct answer.</p>
 	<span id="question"></span>
 	<nav>
 		<span><input type="submit" id="c1" value="" class="choice"/></span>
@@ -71,6 +84,43 @@
 	<audio id="ping">
 		<source scr={{url_for('static', filename = 'ping.mp3')}} type="audio/mpeg">
 	</audio>
+</section>
+
+<!--Get the kanji sheets for the user -->
+<section id="sheets" display="none">
+	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/y_sticker_1.png')}}/></div>
+	<h4>Kanji Sheets</h4>
+	<p>Study all the kanji you will be tested on. Kanji are in order of difficulty.</p>
+	<table id="table">
+		<tr>
+			<th>Difficulty</th>
+			<th>Kanji</th>
+			<th>Romaji</th>
+		</tr>
+	</table>
+</section>
+
+<!--User settings -->
+<section id="settings" display="none">
+	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/m_sticker_1.png')}}/></div>
+	<div class="settings_container">
+		<h4>User Settings</h4>
+		<h5>User ID:</h5>
+		<p id='userID'></p>
+		<h5>Email:</h5>
+		<p id='email'></p>
+		<p>Change Email: <input type='text' id='new_email'/></p>
+		<p id= 'response'></p>
+		<input type='submit' id='change_e' value="Save"/>
+		<h5>First Name:</h5>
+		<p id="fname"></p>
+		<h5>Last Name:</h5>
+		<p id="lname"></p>
+		<h5>Change Passord:</h5>
+		<a href={{url_for('change_pass')}}><input type='submit' id='change_p' value="Click Here to Change Your Password"/></a>
+		<h5>Music</h5>
+		<br />
+	</div>
 </section>
 
 

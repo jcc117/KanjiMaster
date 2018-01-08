@@ -93,21 +93,18 @@ $(document).ajaxStart(function(){
   $('#loader').fadeOut(500);
 })
 
-function signup()
+function change()
 {
-  var userID = document.getElementById("name").value;
   var password = document.getElementById("pass").value;
-  var fname = document.getElementById("fname").value;
-  var lname = document.getElementById("lname").value;
-  var email = document.getElementById("email").value;
   var pass2 = document.getElementById("pass2").value;
+  var old_pass = document.getElementById("old").value;
 
-  var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2;
+  var data = "pass=" + password + "&pass2=" + pass2 + "&old_pass=" + old_pass;
 
-  makeRequest("POST", "/user/", display_sucess, 201, data, 'application/x-www-form-urlencoded');
+  makeRequest("POST", "/change_pass/", display_success, 200, data, 'application/x-www-form-urlencoded');
 }
 
-function display_sucess()
+function display_success()
 {
   //Display a success message
   var message = document.getElementById('response');
@@ -115,22 +112,14 @@ function display_sucess()
   message.classList.add('valid');
 
   //Clear all fields
-  document.getElementById("name").value = '';
   document.getElementById("pass").value = '';
   document.getElementById("pass2").value = '';
-  document.getElementById("lname").value = '';
-  document.getElementById("fname").value = '';
-  document.getElementById("email").value = '';
-}
-
-function do_nothing()
-{
-
+  document.getElementById("old").value = '';
 }
 
 function setup()
 {
-  document.getElementById("signup").addEventListener("click", signup, true);
+  document.getElementById("change").addEventListener("click", change, true);
 }
 
 /*Taken from functions.js*/
