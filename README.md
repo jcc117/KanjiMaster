@@ -35,5 +35,6 @@ TODO:
 	Add audio settings, 
 	Add kanji to the list, 
 	Add ability to take quizzes in kana, 
-	Fix other issues
+	Fix other issues,
+	Start using TypeScript
 

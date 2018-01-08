@@ -63,7 +63,7 @@
 <section id="game" display="none">
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='s_sticker'/></div>
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_2.png')}} id='s_sticker2'/></div>
-	<p>Match the kanji compound with it's reading.</p>
+	<p>Match the kanji compound with it's reading by clicking on the correct answer.</p>
 	<span id="question"></span>
 	<nav>
 		<span><input type="submit" id="c1" value="" class="choice"/></span>
@@ -89,7 +89,8 @@
 <!--Get the kanji sheets for the user -->
 <section id="sheets" display="none">
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/y_sticker_1.png')}}/></div>
-	<p>Study all the kanji you will be tested on.</p>
+	<h4>Kanji Sheets</h4>
+	<p>Study all the kanji you will be tested on. Kanji are in order of difficulty.</p>
 	<table id="table">
 		<tr>
 			<th>Difficulty</th>
@@ -103,7 +104,7 @@
 <section id="settings" display="none">
 	<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/m_sticker_1.png')}}/></div>
 	<div class="settings_container">
-		<h4>Change your user settings.</h4>
+		<h4>User Settings</h4>
 		<h5>User ID:</h5>
 		<p id='userID'></p>
 		<h5>Email:</h5>

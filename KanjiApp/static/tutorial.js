@@ -6,7 +6,7 @@ function t_setup()
 
 function start()
 {
-	alert("hello");
+	alert("Not yet supported");
 	//Able to use request functions from function.js
 }
 
