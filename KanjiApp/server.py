@@ -12,8 +12,8 @@ from models import db, User, Report, Kanji
 
 from datetime import datetime
 
-import win_unicode_console
-win_unicode_console.enable()
+#import win_unicode_console
+#win_unicode_console.enable()
 
 app = Flask(__name__)
 api = Api(app)
