@@ -65,7 +65,7 @@ function explain_s()
 //Have typewriter effect for text
 function typeWriter(text, i)
 {
-	console.log(text.charAt(i) + i);
+	//console.log(text.charAt(i) + i);
 	if(i < text.length)
 	{
 		document.getElementById("p1").innerHTML += text.charAt(i);
@@ -78,6 +78,9 @@ function typeWriter(text, i)
 function clear()
 {
 	document.getElementById("p1").innerHTML = '';
+	/*document.getElementById("p2").innerHTML = '';
+	document.getElementById("p3").innerHTML = '';
+	document.getElementById("p4").innerHTML = '';*/
 	i = 0;
 }
 
