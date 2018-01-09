@@ -2,7 +2,7 @@
 {% block header %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<script src={{url_for('static', filename = 'functions.js')}} type="text/javascript"></script>
-	<script src={{url_for('static', filename = 'tutorial.js')}} type="text/javascript"></script>
+	<!--<script src={{url_for('static', filename = 'tutorial.js')}} type="text/javascript"></script>-->
 	<script src={{url_for('static', filename = 'quiz.js')}} type="text/javascript"></script>
 	<script src={{url_for('static', filename = 'reports.js')}} type="text/javascript"></script>
 	<script src={{url_for('static', filename = 'kanjisheets.js')}} type="text/javascript"></script>
@@ -14,7 +14,7 @@
 	<span id="qspan">Quizzes</span>
 	<span id="rspan">Progress Report</span>
 	<span id="kspan">Kanji Sheet</span>
-	<span id="tspan">Site Tutorial</span>
+	<!--<span id="tspan">Site Tutorial</span>-->
 	<span id="sspan">User Settings</span>
 	<a href={{url_for('logout')}}><span>Logout</span></a>
 </nav>
@@ -25,7 +25,10 @@
 
 <!--Show all information on what quizzes you can take-->
 <section id="quiz">
-	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='sticker'/></div>
+	<div class='d_container'>
+		<div class='dialogue' id='d1'><p id='p1'></p><input type='submit' id='n1' value="Next"/></div>
+		<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/s_sticker_1.png')}} id='sticker'/></div>
+	</div>
 	<nav>
 		<span><input type="submit" id="g1" value="Grade 1"/></span>
 		<span><input type="submit" id="g2" value="Grade 2"/></span>
