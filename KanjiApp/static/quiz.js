@@ -318,7 +318,7 @@ function quiz0()
 	makeRequest('GET', "/kanji/", parseData, 200);
 }
 //Katakana
-function quizn1
+function quizn1()
 {
 	dif = -1;
 	makeRequest('GET', "/kanji/", parseData, 200);
