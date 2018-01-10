@@ -38,6 +38,7 @@ function parseData(data)
 	var audio = document.getElementById("gameAudio");
 	audio.load();
 	audio.play();
+	document.getElementById("mute").addEventListener("click", mute, true);
 
 	$("#s_sticker").show();
 	$("#s_sticker2").hide();
@@ -308,4 +309,22 @@ function quiz6()
 	alert("That is not yet supported");
 	/*dif = 6;
 	makeRequest('GET', "/kanji/", parseData, 200);*/
+}
+
+//Mute the music
+function mute()
+{
+	document.getElementById("gameAudio").pause();
+	document.getElementById("mute").removeEventListener("click", mute);
+	document.getElementById("mute").addEventListener("click", unmute);
+	document.getElementById("mute").value = "Unmute Audio";
+}
+
+//Play music
+function unmute()
+{
+	document.getElementById("gameAudio").play();
+	document.getElementById("mute").removeEventListener("click", unmute);
+	document.getElementById("mute").addEventListener("click", mute);
+	document.getElementById("mute").value = "Mute Audio";
 }
