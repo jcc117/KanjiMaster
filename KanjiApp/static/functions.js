@@ -10,6 +10,8 @@ function setup()
 	document.getElementById("g4").addEventListener("click", quiz4, true);
 	document.getElementById("g5").addEventListener("click", quiz5, true);
 	document.getElementById("g6").addEventListener("click", quiz6, true);
+	document.getElementById("hi").addEventListener("click", quiz0, true);
+	document.getElementById("ka").addEventListener("click", quizn1, true);
 	document.getElementById("qspan").addEventListener("click", switch_to_q, true);
 	document.getElementById("rspan").addEventListener("click", switch_to_r, true);
 	document.getElementById("kspan").addEventListener("click", switch_to_k, true);
@@ -163,9 +165,9 @@ jQuery(function($){
 		$(this).animate({ bottom: "+=60" }, {duration: 120, easing: "easeOutQuart"})
 		.animate({ bottom: "-=60" }, {duration: 150, easing: "easeInSine"});
 	});
-
+	/*
 	var audio = $("#but_hov")[0];
-	$('.choice').mouseenter(function(){audio.load(); audio.play();});
+	$('.choice').mouseenter(function(){audio.load(); audio.play();});*/
 });
 
 //Loader image

@@ -39,6 +39,7 @@ function parseData(data)
 	audio.load();
 	audio.play();
 	document.getElementById("mute").addEventListener("click", mute, true);
+	document.getElementById("mute").value = "Mute";
 
 	$("#s_sticker").show();
 	$("#s_sticker2").hide();
@@ -309,6 +310,18 @@ function quiz6()
 	alert("That is not yet supported");
 	/*dif = 6;
 	makeRequest('GET', "/kanji/", parseData, 200);*/
+}
+//Hiragana
+function quiz0()
+{
+	dif = 0;
+	makeRequest('GET', "/kanji/", parseData, 200);
+}
+//Katakana
+function quizn1
+{
+	dif = -1;
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 //Mute the music
