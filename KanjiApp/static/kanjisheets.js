@@ -1,6 +1,7 @@
 //Table of all kanji
 var all_kanji;
 var s_dif = 0;
+var p_data;
 
 //Setup the kanji table updon loading
 function k_setup()
@@ -22,6 +23,7 @@ function make_table(data)
 	all_kanji = data;	//Hold this data for use for the quizzes
 
 	var pData = JSON.parse(JSON.parse(data)); //Double parsed data
+	p_data = pData;
 
 	//Add rows the table of kanji
 
@@ -102,13 +104,14 @@ function search()
 	{
 		//Find the corresponding number for the lesson selection
 		set_dif(selection);
-		var pData = JSON.parse(JSON.parse(all_kanji));
-		var filtered = pData.filter(filter_by_dif);
+		//var pData = JSON.parse(all_kanji);
+		//console.log("pData:" + pData);
+		var filtered = p_data.filter(filter_by_dif);
 		console.log(filtered);
 		clear_table();
 		var table = document.getElementById("table");
 		//Add all results to the table
-		for(i in pData)
+		for(i in filtered)
 		{
 			add_row(table, filtered[i]['kanji'], filtered[i]['romaji'], filtered[i]['dif']);
 		}
@@ -116,7 +119,7 @@ function search()
 }
 function filter_by_dif(item)
 {
-	item['dif'] === s_dif;
+	return item['dif'] === s_dif;
 }
 //Clear the table
 function clear_table()
