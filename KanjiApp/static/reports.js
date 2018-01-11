@@ -88,7 +88,14 @@ function get_overall()
 	elem.appendChild(document.createElement("br"));
 	elem.appendChild(document.createTextNode("Total Questions Answered Correctly:\t" + scores));
 	elem.appendChild(document.createElement("br"));
-	elem.appendChild(document.createTextNode("Overall Percentage:\t" + ((scores/total_q)* 100) + "%"));
+	if(scores === 0 && total_q === 0)
+	{
+		elem.appendChild(document.createTextNode("Overall Percentage: Not available"));
+	}
+	else
+	{
+		elem.appendChild(document.createTextNode("Overall Percentage:\t" + ((scores/total_q)* 100) + "%"));
+	}
 	elem.appendChild(document.createElement("br"));
 	elem.appendChild(document.createTextNode("Number of Quizzes Taken:\t" + num_reports));
 	elem.appendChild(document.createElement("br"));

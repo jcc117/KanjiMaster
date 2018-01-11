@@ -18,7 +18,7 @@ function get_kanji()
 function make_table(data)
 {
 	all_kanji = data;	//Hold this data for use for the quizzes
-	
+
 	var pData = JSON.parse(JSON.parse(data)); //Double parsed data
 
 	//Add rows the table of kanji
@@ -48,7 +48,33 @@ function add_row(table, kanji, romaji, dif)
 
 	k.appendChild(document.createTextNode(kanji));
 	r.appendChild(document.createTextNode(romaji));
-	d.appendChild(document.createTextNode(dif));
+	//Get the lesson
+	var lesson;
+	if(dif === 1)
+	{
+		lesson = "Lesson 9";
+	}
+	else if(dif === 2)
+	{
+		lesson = "Lesson 10";
+	}
+	else if(dif === 3)
+	{
+		lesson = "Lesson 11";
+	}
+	else if(dif === 4)
+	{
+		lesson = "Lesson 12";
+	}
+	else if(dif === 0)
+	{
+		lesson = "Hiragana";
+	}
+	else if(dif === -1)
+	{
+		lesson = "Katakana";
+	}
+	d.appendChild(document.createTextNode(lesson));
 
 	elem.appendChild(d);
 	elem.appendChild(k);
