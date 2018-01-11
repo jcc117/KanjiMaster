@@ -83,5 +83,21 @@ function add_row(table, kanji, romaji, dif)
 	table.appendChild(elem);
 }
 
+//Search for kanji of a specific difficulty
+function search(dif)
+{
+	var pData = JSON.parse(JSON.parse(all_kanji));
+	var filtered = pData.filter(filter_by_dif);
+	clear_table();
+}
+function filter_by_dif(item)
+{
+	item['dif'] === dif;
+}
+function clear_table()
+{
+	
+}
+
 //Initialize page setup on load time
 window.addEventListener("load", k_setup, true);
