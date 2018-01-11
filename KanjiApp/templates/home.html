@@ -99,11 +99,22 @@
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/y_sticker_1.png')}}/></div>
 	<h4>Kanji Sheets</h4>
 	<p>Study all the kanji you will be tested on.</p>
+	<p>Search list for specific lessons</p>
+	<select id="k_option">
+		<option value="All">All</option>
+		<option value="Hiragana">Hiragana</option>
+		<option value="Katakana">Katakana</option>
+		<option value="Lesson9">Lesson 9</option>
+		<option value="Lesson10">Lesson 10</option>
+		<option value="Lesson11">Lesson 11</option>
+		<option value="Lesson12">Lesson 12</option>
+	</select>
+	<input type='submit' value="Search" id='search'/>
 	<table id="table">
 		<tr>
 			<th>Lesson</th>
 			<th>Kanji</th>
-			<th>Romaji</th>
+			<th>Reading</th>
 		</tr>
 	</table>
 </section>

@@ -1,9 +1,11 @@
 //Table of all kanji
 var all_kanji;
+var s_dif = 0;
 
 //Setup the kanji table updon loading
 function k_setup()
 {
+	document.getElementById("search").addEventListener("click", search, true);
 	get_kanji();
 }
 
@@ -84,19 +86,75 @@ function add_row(table, kanji, romaji, dif)
 }
 
 //Search for kanji of a specific difficulty
-function search(dif)
+function search()
 {
-	var pData = JSON.parse(JSON.parse(all_kanji));
-	var filtered = pData.filter(filter_by_dif);
-	clear_table();
+	//Get the value you are searching for
+	var selection = document.getElementById("k_option").value;
+	//console.log(selection);
+	//If all kanji are selected, just run make_table again
+	if(selection === "All")
+	{
+		clear_table();
+		make_table(all_kanji);
+	}
+	//Select a specific lesson
+	else
+	{
+		//Find the corresponding number for the lesson selection
+		set_dif(selection);
+		var pData = JSON.parse(JSON.parse(all_kanji));
+		var filtered = pData.filter(filter_by_dif);
+		console.log(filtered);
+		clear_table();
+		var table = document.getElementById("table");
+		//Add all results to the table
+		for(i in pData)
+		{
+			add_row(table, filtered[i]['kanji'], filtered[i]['romaji'], filtered[i]['dif']);
+		}
+	}
 }
 function filter_by_dif(item)
 {
-	item['dif'] === dif;
+	item['dif'] === s_dif;
 }
+//Clear the table
 function clear_table()
 {
-	
+	var table = document.getElementById("table");
+	while(table.firstChild)
+	{
+		table.removeChild(table.firstChild);
+	}
+	//Reinsert headers
+	var h1 = document.createElement("th");
+	var h2 = document.createElement("th");
+	var h3 = document.createElement("th");
+	h1.appendChild(document.createTextNode("Lesson"));
+	h2.appendChild(document.createTextNode("Kanji"));
+	h3.appendChild(document.createTextNode("Reading"));
+
+	table.appendChild(h1);
+	table.appendChild(h2);
+	table.appendChild(h3);
+}
+//Set the s_dif(selected difficulty) to the corresponding number based on lesson selection
+function set_dif(selection)
+{
+	if(selection === "Hiragana")
+		s_dif = 0;
+	else if(selection === "Katakana")
+		s_dif = -1;
+	else if(selection === "Lesson9")
+		s_dif = 1;
+	else if(selection === "Lesson10")
+		s_dif = 2;
+	else if(selection === "Lesson11")
+		s_dif = 3;
+	else if(selection === "Lesson12")
+		s_dif = 4;
+
+	//console.log(s_dif);
 }
 
 //Initialize page setup on load time
