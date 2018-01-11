@@ -1,3 +1,6 @@
+//Table of all kanji
+var all_kanji;
+
 //Setup the kanji table updon loading
 function k_setup()
 {
@@ -14,7 +17,9 @@ function get_kanji()
 //Make the table of kanji
 function make_table(data)
 {
-	var pData = JSON.parse(JSON.parse(data));
+	all_kanji = data;	//Hold this data for use for the quizzes
+	
+	var pData = JSON.parse(JSON.parse(data)); //Double parsed data
 
 	//Add rows the table of kanji
 

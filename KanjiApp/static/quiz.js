@@ -273,54 +273,62 @@ function quit()
 function quiz1()
 {
 	dif = 1;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
 	//console.log('plz');
+	parseData(all_kanji);
 }
 
 function quiz2()
 {
 	dif = 2;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);
 }
 
 function quiz3()
 {
 	//alert("That is not yet supported");
 	dif = 3;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);
 }
 
 function quiz4()
 {
 	//alert("That is not yet supported");
 	dif = 4;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);
 }
 
 function quiz5()
 {
 	alert("That is not yet supported");
 	/*dif = 5;
-	makeRequest('GET', "/kanji/", parseData, 200);*/
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);*/
 }
 
 function quiz6()
 {
 	alert("That is not yet supported");
 	/*dif = 6;
-	makeRequest('GET', "/kanji/", parseData, 200);*/
+	//makeRequest('GET', "/kanji/", parseData, 200);\
+	parseData(all_kanji);*/
 }
 //Hiragana
 function quiz0()
 {
 	dif = 0;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);
 }
 //Katakana
 function quizn1()
 {
 	dif = -1;
-	makeRequest('GET', "/kanji/", parseData, 200);
+	//makeRequest('GET', "/kanji/", parseData, 200);
+	parseData(all_kanji);
 }
 
 //Mute the music
