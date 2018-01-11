@@ -29,12 +29,12 @@ Installation instructions
 This is known to work on windows. Results on other operating systems are unknown.
 
 TODO:
-	Site Tutorial,    
+	Site Tutorial (pending),    
 	Add more content on the site in general, 
 	Set Load screen for ajax requests (in a clean way), 
 	Add audio settings, 
 	Add kanji to the list, 
-	Add ability to take quizzes in kana, 
+	Add ability to take quizzes in kana - will now use kana as default for non-kana quizzes, 
 	Fix other issues,
 	Start using TypeScript
 
