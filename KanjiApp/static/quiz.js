@@ -279,23 +279,22 @@ function quiz1()
 
 function quiz2()
 {
-	alert("That is not yet supported");
-	/*dif = 2;
-	makeRequest('GET', "/kanji/", parseData, 200);*/
+	dif = 2;
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz3()
 {
-	alert("That is not yet supported");
-	/*dif = 3;
-	makeRequest('GET', "/kanji/", parseData, 200);*/
+	//alert("That is not yet supported");
+	dif = 3;
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz4()
 {
-	alert("That is not yet supported");
-	/*dif = 4;
-	makeRequest('GET', "/kanji/", parseData, 200);*/
+	//alert("That is not yet supported");
+	dif = 4;
+	makeRequest('GET', "/kanji/", parseData, 200);
 }
 
 function quiz5()
