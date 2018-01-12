@@ -6,7 +6,7 @@ import os
 import json
 from flask import Flask, render_template, request, session, flash, g, redirect, url_for
 from flask_restful import reqparse, abort, Api, Resource
-import jaconv
+#import jaconv
 
 from models import db, User, Report, Kanji
 
