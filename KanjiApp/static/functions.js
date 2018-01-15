@@ -8,8 +8,9 @@ function setup()
 	document.getElementById("g2").addEventListener("click", quiz2, true);
 	document.getElementById("g3").addEventListener("click", quiz3, true);
 	document.getElementById("g4").addEventListener("click", quiz4, true);
-	//document.getElementById("g5").addEventListener("click", quiz5, true);
-	//document.getElementById("g6").addEventListener("click", quiz6, true);
+	document.getElementById("g5").addEventListener("click", quiz5, true);
+	document.getElementById("g6").addEventListener("click", quiz6, true);
+	document.getElementById("g7").addEventListener("click", quiz7, true);
 	document.getElementById("hi").addEventListener("click", quiz0, true);
 	document.getElementById("ka").addEventListener("click", quizn1, true);
 	document.getElementById("qspan").addEventListener("click", switch_to_q, true);

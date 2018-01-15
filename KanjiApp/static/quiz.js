@@ -303,18 +303,23 @@ function quiz4()
 
 function quiz5()
 {
-	alert("That is not yet supported");
-	/*dif = 5;
+	//alert("That is not yet supported");
+	dif = 5;
 	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);*/
+	parseData(all_kanji);
 }
 
 function quiz6()
 {
-	alert("That is not yet supported");
-	/*dif = 6;
+	//alert("That is not yet supported");
+	dif = 6;
 	//makeRequest('GET', "/kanji/", parseData, 200);\
-	parseData(all_kanji);*/
+	parseData(all_kanji);
+}
+function quiz7()
+{
+	dif = 7;
+	parseData(all_kanji);
 }
 //Hiragana
 function quiz0()

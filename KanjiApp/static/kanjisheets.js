@@ -70,6 +70,18 @@ function add_row(table, kanji, romaji, dif)
 	{
 		lesson = "Lesson 12";
 	}
+	else if(dif === 5)
+	{
+		lesson = "Lesson 13";
+	}
+	else if(dif === 6)
+	{
+		lesson = "Lesson 14";
+	}
+	else if(dif === 7)
+	{
+		lesson = "Lesson 15";
+	}
 	else if(dif === 0)
 	{
 		lesson = "Hiragana";
@@ -156,6 +168,12 @@ function set_dif(selection)
 		s_dif = 3;
 	else if(selection === "Lesson12")
 		s_dif = 4;
+	else if(selection === "Lesson13")
+		s_dif = 5;
+	else if(selection === "Lesson14")
+		s_dif = 6;
+	else if(selection === "Lesson15")
+		s_dif = 7;
 
 	//console.log(s_dif);
 }
