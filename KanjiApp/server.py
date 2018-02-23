@@ -41,6 +41,7 @@ parser.add_argument('userID', type=str)
 parser.add_argument('pass', type=str)
 parser.add_argument('pass2', type=str)
 parser.add_argument('old_pass', type=str)
+parser.add_argument('reason', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -297,6 +298,8 @@ class R_User(Resource):
 			#Check for an email
 			elif not data['email']:
 				error = "No email given"
+			elif not data['reason']:
+				error = "No reason to study given"
 			#Check for taken username
 			elif get_user_id(data['userID']) is None:
 				#Catch any possible errors
