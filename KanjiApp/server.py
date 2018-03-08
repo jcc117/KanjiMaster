@@ -163,6 +163,19 @@ def change_email():
 	else:
 		return json.dumps("Unauthorized action"), 401
 
+@app.route("/change_reason/", methods=['POST'])
+def change_reason():
+	if g.user:
+		data = parser.parse_args()
+		if data['reason']:
+			g.user.new_reason(data['reason'])
+			db.session.commit()
+			return json.dumps("Success"), 200
+		else:
+			return json.dumps("No new reason given"), 400
+	else:
+		return json.dumps("Unauthorized action"), 401
+
 #Get the kanji for a specific category
 '''
 @app.route("/kanji/", methods = ['POST'])
@@ -267,7 +280,7 @@ class R_User(Resource):
 	def get(self):
 		if g.user:
 			rv = []
-			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email})
+			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason})
 			return json.dumps(rv), 200
 		else:
 			return json.dumps("Unauthorized"), 401
@@ -304,7 +317,7 @@ class R_User(Resource):
 			elif get_user_id(data['userID']) is None:
 				#Catch any possible errors
 				try:
-					db.session.add(User(data['userID'], data['pass'], data['fname'], data['lname'], data['email']))
+					db.session.add(User(data['userID'], data['pass'], data['fname'], data['lname'], data['email'], data['reason']))
 					db.session.commit()
 				except:
 					return json.dumps("Bad request"), 400

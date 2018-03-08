@@ -12,10 +12,25 @@ function change_email()
 	makeRequest("POST", "/change_email/", display_success, 200, data, 'application/x-www-form-urlencoded');
 }
 
+//Request change to reason for learning kanji
+function change_reason()
+{
+	var data = "reason=" + document.getElementById("new_reason").value;
+
+	makeRequest("POST", "/change_reason/", display_success_r, 200, data, 'application/x-www-form-urlencoded');
+}
+
 //Show an update message for a successful change of information
 function display_success()
 {
 	var message = document.getElementById("response");
+	message.innerHTML = "Success!";
+	message.classList.add('valid');
+}
+
+function display_success_r()
+{
+	var message = document.getElementById("reason_response");
 	message.innerHTML = "Success!";
 	message.classList.add('valid');
 }
@@ -31,10 +46,12 @@ function setup_info(data)
 	document.getElementById("email").innerHTML = pData[0]['email'];
 	document.getElementById("fname").innerHTML = pData[0]['fname'];
 	document.getElementById("lname").innerHTML = pData[0]['lname'];
+	//Set this up for the main header
+	document.getElementById("reason").innerHTML = "Remember your reason for studying Kanji! - " + pData[0]['reason'];
 
 	//Add event listeners for change buttons
 	document.getElementById("change_e").addEventListener("click", change_email, true);
-	//document.getElementById("change_p").addEventListener("click", change_password, true);
+	document.getElementById("change_r").addEventListener("click", change_reason, true);
 }
 
 window.addEventListener("load", s_setup, true);

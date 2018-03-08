@@ -12,13 +12,15 @@ class User(db.Model):
 	fname = db.Column(db.String(300), nullable = False)
 	lname = db.Column(db.String(300), nullable = False)
 	email = db.Column(db.String(300), nullable = False)
+	reason = db.Column(db.String(210), nullable = False)
 
-	def __init__(self, id, passw, fname, lname, email):
+	def __init__(self, id, passw, fname, lname, email, reason):
 		self.userID = id
 		self.password = bcrypt.encrypt(passw)
 		self.fname = fname
 		self.lname = lname
 		self.email = email
+		self.reason = reason
 
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
@@ -28,6 +30,9 @@ class User(db.Model):
 
 	def new_email(self, email):
 		self.email = email
+
+	def new_reason(self, reason):
+		self.reason = reason
 
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)

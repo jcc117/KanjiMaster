@@ -30,10 +30,7 @@ This is known to work on windows and and the chrome web browser. Results on othe
 	TODO:
 	Site Tutorial (pending),    
 	Add more content on the site in general, 
-	Set Load screen for ajax requests (in a clean way), 
-	Add audio settings, 
+	Set Load screen for ajax requests (in a clean way),
 	Add kanji to the list, 
-	Add ability to take quizzes in kana - will now use kana as default for non-kana quizzes, 
-	Fix other issues,
-	Start using TypeScript
+	Fix other issues
 

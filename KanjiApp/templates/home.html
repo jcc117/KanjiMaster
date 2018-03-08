@@ -10,12 +10,16 @@
 {% endblock %}
 	
 {% block body %}
+<div class="reason">
+	<p id="reason"></p>
+</div>
 <nav class="homemenu">
 	<span id="qspan">Quizzes</span>
 	<span id="rspan">Progress Report</span>
 	<span id="kspan">Kanji Sheet</span>
 	<!--<span id="tspan">Site Tutorial</span>-->
 	<span id="sspan">User Settings</span>
+	<span id="lspan">Reading Material</span>
 	<a href={{url_for('logout')}}><span>Logout</span></a>
 </nav>
 
@@ -141,8 +145,64 @@
 		<p id="lname"></p>
 		<h5>Change Passord:</h5>
 		<a href={{url_for('change_pass')}}><input type='submit' id='change_p' value="Click Here to Change Your Password"/></a>
-		<h5>Music</h5>
+		<h5>Change Reason for Learning Kanji</h5>
+		<p>Enter your new reason for studying kanji:</p>
+		<textarea name='reason' id='new_reason' maxlength=200 rows = 4 cols = 50></textarea>
+		<p id='reason_response'></p>
+		<input type='submit' id='change_r' value="Save"/>
 		<br />
+	</div>
+</section>
+
+<!--Links to outside reading material -->
+<section id="links" display="none">
+	<!--Will include all stickers here like on the login page -->
+	<div class="sticker">
+		<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/s_sticker_1.png')}}/></div>
+		<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/n_sticker_1.png')}}/></div>
+		<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/y_sticker_1.png')}}/></div>
+		<div class="sticker"><img src={{url_for('static', filename='ddlc_stickers/m_sticker_1.png')}}/></div>
+	</div>
+	<div class="settings_container">
+		<h2>Outside Reading Material</h2>
+		<p>Are you looking for a way to improve your reading skills in real world applications that interests you? This is the page
+			for you!!! Here you will find links to various outside reading materials on varying difficulty levels. It is recommended that you start on 
+			some easier reading material and work you way to material that is more difficult. Remember, the journey of a thousand miles begins with a 
+			single step. Don't overwhelm yourself with material that may be too challenging for your skill level. There is no shame in admitting your 
+			limits as a second language learner. We hope you find a new way to explore your own interests in the Japanese language!
+		</p>
+		<h4>Beginner Level</h4>
+			<a href="http://life.ou.edu/stories/" target="_blank">Traditional Japanese Children's Stories</a><br />
+			<a href="http://hukumusume.com/douwa/English/index.html" target="_blank">Hukumusume</a><br />
+			<a href="https://www.ehonnavi.net/" target="_blank">EhonNavi</a><br />
+			<a href="https://www.coscom.co.jp/newsweather/newsheadline/index.html" target="_blank">CosCom News</a><br />
+			<a href="http://www.e-hon.jp/demo2/index1.htm" target="_blank">E-Hon</a>		
+		<h4>Intermediate Level</h4>
+			<a href="http://watanoc.com/" target="_blank">Watanoc</a><br />
+			<a href="https://hirogaru-nihongo.jp/" target="_blank">Hirogaru</a><br />
+			<a href="https://matcha-jp.com/easy/" target="_blank">Matcha</a><br />
+			<a href="http://www.nippontalk.com/en" target="_blank">Nippon Talk</a><br />
+			<a href="http://www3.nhk.or.jp/news/easy/" target="_blank">NHK News Web Easy</a><br />
+			<a href="https://kids.yahoo.co.jp/" target="_blank">Yahoo Kids</a><br />
+			<a href="http://www.hiraganatimes.com/" target="_blank">Hiragana Times</a><br />
+			<a href="https://www.wasabi-jpn.com/japanese-lessons/fairy-tales-and-short-stories-with-easy-japanese/" target="_blank">Wasabi (Fairy Stories)</a><br />
+			<a href="https://www.wasabi-jpn.com/japanese-lessons/materials-for-japanese-lessons-intensive-reading/" target="_blank">Wasabi (Manga)</a><br />
+			<a href="http://language.tiu.ac.jp/materials/eng/" target="_blank">Reading Tutor</a>	
+		<h4>Advanced Level</h4>
+			<h5>News</h5>
+				<a href="https://www3.nhk.or.jp/" target="_blank">NHK</a><br />
+				<a href="http://www.yomiuri.co.jp/" target="_blank">Yomiuri Shinbun</a><br />
+				<a href="https://mainichi.jp/" target="_blank">Mainichi Shinbun</a><br />
+				<a href="https://www.asahi.com/" target="_blank">Asahi Shinbun</a>
+			<h5>Books</h5>
+				<a href="http://www.aozora.gr.jp/" target="_blank">Aozora Bunko</a><br />
+				<a href="https://www.gutenberg.org/browse/languages/ja" target="_blank">Project Gutenberg (Japanese)</a><br />
+				<a href="http://syosetu.com/" target="_blank">Shousetsuka ni narou</a><br />
+				<a href="http://jti.lib.virginia.edu/japanese/" target="_blank">University of Virginia Japanese Text Initiative</a>
+			<h5>Manga</h5>
+				<a href="https://comic-walker.com/" target="_blank">Comicwalker</a><br />
+				<a href="http://sai-zen-sen.jp/" target="_blank">Sai Zen Sen</a><br />
+				<a href="https://www.comico.jp/" target="_blank">Comico</a>
 	</div>
 </section>
 

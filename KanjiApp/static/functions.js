@@ -17,6 +17,7 @@ function setup()
 	document.getElementById("rspan").addEventListener("click", switch_to_r, true);
 	document.getElementById("kspan").addEventListener("click", switch_to_k, true);
 	document.getElementById("sspan").addEventListener("click", switch_to_s, true);
+	document.getElementById("lspan").addEventListener("click", switch_to_l, true);
 
 	var rep = document.getElementById("reports");
 	rep.style.display = "none";
@@ -26,6 +27,8 @@ function setup()
 	sheets.style.display = "none";
 	var set = document.getElementById("settings");
 	set.style.display = "none";
+	var links = document.getElementById("links");
+	links.style.display = "none";
 
 }
 
@@ -37,7 +40,9 @@ function switch_to_q()
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
 
+	l.style.display = "none";
 	qu.style.display = "none";
 	q.style.display = "block";
 	r.style.display = "none";
@@ -53,7 +58,9 @@ function switch_to_r()
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
 
+	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "block";
 	q.style.display = "none";
@@ -70,7 +77,9 @@ function switch_to_k()
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
 
+	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "none";
 	q.style.display = "none";
@@ -87,12 +96,33 @@ function switch_to_s()
 	var qu = document.getElementById("game");
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
 
+	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "none";
 	q.style.display = "none";
 	k.style.display = "none";
 	s.style.display = "block";
+
+	quiz_reset();
+}
+//Switch to external links
+function switch_to_l()
+{
+	var q = document.getElementById("quiz");
+	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
+
+	l.style.display = "block";
+	qu.style.display = "none";
+	r.style.display = "none";
+	q.style.display = "none";
+	k.style.display = "none";
+	s.style.display = "none";
 
 	quiz_reset();
 }
