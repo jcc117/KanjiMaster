@@ -13,6 +13,7 @@ class User(db.Model):
 	lname = db.Column(db.String(300), nullable = False)
 	email = db.Column(db.String(300), nullable = False)
 	reason = db.Column(db.String(210), nullable = False)
+	date = db.Column(db.DateTime)
 
 	def __init__(self, id, passw, fname, lname, email, reason):
 		self.userID = id
@@ -33,6 +34,9 @@ class User(db.Model):
 
 	def new_reason(self, reason):
 		self.reason = reason
+
+	def latest_report(self, date):
+		self.date = date
 
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)

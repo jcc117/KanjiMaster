@@ -1,3 +1,5 @@
+var latest_date;
+
 //Request information about the user
 function s_setup()
 {
@@ -26,6 +28,7 @@ function display_success()
 	var message = document.getElementById("response");
 	message.innerHTML = "Success!";
 	message.classList.add('valid');
+	makeRequest("GET", "/user/", setup_info, 200);
 }
 
 function display_success_r()
@@ -33,6 +36,7 @@ function display_success_r()
 	var message = document.getElementById("reason_response");
 	message.innerHTML = "Success!";
 	message.classList.add('valid');
+	makeRequest("GET", "/user/", setup_info, 200);
 }
 
 //Set up all of the info about the user
@@ -48,6 +52,8 @@ function setup_info(data)
 	document.getElementById("lname").innerHTML = pData[0]['lname'];
 	//Set this up for the main header
 	document.getElementById("reason").innerHTML = "Remember your reason for studying Kanji! - " + pData[0]['reason'];
+
+	latest_date = new Date(pData[0]['date']);
 
 	//Add event listeners for change buttons
 	document.getElementById("change_e").addEventListener("click", change_email, true);

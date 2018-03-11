@@ -267,7 +267,9 @@ class R_Report(Resource):
 
 			#Add the report to the user
 			try:
-				db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, datetime.now()))
+				date = datetime.now()
+				db.session.add(Report(g.user.userID, difficulty, num_correct, num_total, date))
+				g.user.latest_report(date)
 				db.session.commit()
 			except:
 				return json.dumps("Bad request"), 400
@@ -280,7 +282,7 @@ class R_User(Resource):
 	def get(self):
 		if g.user:
 			rv = []
-			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason})
+			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason, "date":str(g.user.date)})
 			return json.dumps(rv), 200
 		else:
 			return json.dumps("Unauthorized"), 401

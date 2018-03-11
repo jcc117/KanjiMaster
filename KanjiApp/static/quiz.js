@@ -7,6 +7,7 @@ var total = 30;
 var turn = 1;
 var cor;
 var dif = 0;
+var date;
 
 //Parse data related from quiz request
 function parseData(data)
@@ -207,6 +208,7 @@ function show_results()
 	send_report(score, total, dif);
 	switch_to_r();
 	refresh();
+	makeRequest("GET", "/user/", setup_info, 200); 	//Refresh everything with up to date user info and dates
 }
 
 function correct()
@@ -272,68 +274,131 @@ function quit()
 
 function quiz1()
 {
-	dif = 1;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	//console.log('plz');
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		dif = 1;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		//console.log('plz');
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 function quiz2()
 {
-	dif = 2;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		dif = 2;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 function quiz3()
 {
-	//alert("That is not yet supported");
-	dif = 3;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		//alert("That is not yet supported");
+		dif = 3;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 function quiz4()
 {
-	//alert("That is not yet supported");
-	dif = 4;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		//alert("That is not yet supported");
+		dif = 4;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 function quiz5()
 {
-	//alert("That is not yet supported");
-	dif = 5;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		//alert("That is not yet supported");
+		dif = 5;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 function quiz6()
 {
-	//alert("That is not yet supported");
-	dif = 6;
-	//makeRequest('GET', "/kanji/", parseData, 200);\
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		//alert("That is not yet supported");
+		dif = 6;
+		//makeRequest('GET', "/kanji/", parseData, 200);\
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 function quiz7()
 {
-	dif = 7;
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		dif = 7;
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 //Hiragana
 function quiz0()
 {
-	dif = 0;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		dif = 0;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 //Katakana
 function quizn1()
 {
-	dif = -1;
-	//makeRequest('GET', "/kanji/", parseData, 200);
-	parseData(all_kanji);
+	if(verify_dates(latest_date))
+	{
+		dif = -1;
+		//makeRequest('GET', "/kanji/", parseData, 200);
+		parseData(all_kanji);
+	}
+	else
+	{
+		alert("30 minutes have not yet passed. Take a break.");
+	}
 }
 
 //Mute the music
@@ -352,4 +417,15 @@ function unmute()
 	document.getElementById("mute").removeEventListener("click", unmute);
 	document.getElementById("mute").addEventListener("click", mute);
 	document.getElementById("mute").value = "Mute Audio";
+}
+
+//Check dates to give permission to take a quiz
+function verify_dates(date)
+{
+	console.log(date);
+	var now = Date.now();
+	if((now - date.valueOf()) > (60000 * 5))
+		return true;
+	else
+		return false;
 }
