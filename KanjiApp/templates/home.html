@@ -14,6 +14,7 @@
 	<p id="reason"></p>
 </div>
 <nav class="homemenu">
+	<span id="aspan">About Us</span>
 	<span id="qspan">Quizzes</span>
 	<span id="rspan">Progress Report</span>
 	<span id="kspan">Kanji Sheet</span>
@@ -25,7 +26,30 @@
 
 
 
-<!--Will only show one of these sections at a time. Default is quizzes-->
+<!--Will only show one of these sections at a time. Default is About Us-->
+<section id="about">
+	<h2>About Us</h2>
+	<p>KanjiMaster.com is based on research based upon the motivations a learner has when studying a foreign language. These can range from long term
+		to short term goals in varying degrees of seriousness. We recognize that someone who is studying Japanese to learn about pop culture will have vastly
+		different motivations than someone who is studying it for business related purposes. Regardless, we have used research to investigate how
+		people learn kanji and from there have implemented various means to help with kanji literacy.
+	</p>
+	<p>It is important to note what this site covers and what it does not. KanjiMaster.com is only meant to be used as a literacy study aide. It is not
+		meant to teach grammar, listening, speaking, or any other aspect of the Japanese language. When learning a language it is important to keep these
+		tasks separate in order to maximize progress made in each field.
+	</p>
+	<p>Some of the features this site includes are based around the idea of keeping the user motivated to continue learning the Japanese language. This 
+		includes using goals around the website to remind the user why they are still studying the language. A user can change these reminders at any 
+		time if these were to change. We also utilize mandatory breaks from taking quizzes. These are used not only to give the user a break and not
+		have them burn out on studying, but also to try to encourage long-term memorization of kanji over short-term memorization. The site also breaks
+		down the user's goals into long term and short term goals. The long term goals is updated only as the user needs to do so and is permanently 
+		displayed in the header of the user's page. Short term goals are set on a weekly basis, the user is reminded to keep these goals practical.
+		Different cultural reference links are also included in order to keep the user interested in learning by giving them outside experience in
+		becoming literate in a way that fits the user's personal interests.
+	</p>
+	<p>More information about the design of the site along with more details on research can be found in the document below.</p>
+	<a href={{url_for('static', filename = 'Draft.docx')}} download>University of Pittsburgh, JPNSE 1999 Capstone Paper by Jordan Carr (Rough Draft)</a>
+</section>
 
 <!--Show all information on what quizzes you can take-->
 <section id="quiz">

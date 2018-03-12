@@ -424,7 +424,7 @@ function verify_dates(date)
 {
 	console.log(date);
 	var now = Date.now();
-	if((now - date.valueOf()) > (60000 * 5))
+	if((now - date.valueOf()) > (60000 * 30))
 		return true;
 	else
 		return false;

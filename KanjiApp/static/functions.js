@@ -18,6 +18,7 @@ function setup()
 	document.getElementById("kspan").addEventListener("click", switch_to_k, true);
 	document.getElementById("sspan").addEventListener("click", switch_to_s, true);
 	document.getElementById("lspan").addEventListener("click", switch_to_l, true);
+	document.getElementById("aspan").addEventListener("click", switch_to_a, true);
 
 	var rep = document.getElementById("reports");
 	rep.style.display = "none";
@@ -29,6 +30,8 @@ function setup()
 	set.style.display = "none";
 	var links = document.getElementById("links");
 	links.style.display = "none";
+	var quiz = document.getElementById("quiz");
+	quiz.style.display = "none";
 
 }
 
@@ -41,7 +44,9 @@ function switch_to_q()
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
 	var l = document.getElementById("links");
+	var a = document.getElementById("about");
 
+	a.style.display = "none";
 	l.style.display = "none";
 	qu.style.display = "none";
 	q.style.display = "block";
@@ -59,7 +64,9 @@ function switch_to_r()
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
 	var l = document.getElementById("links");
+	var a = document.getElementById("about");
 
+	a.style.display = "none";
 	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "block";
@@ -78,7 +85,9 @@ function switch_to_k()
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
 	var l = document.getElementById("links");
+	var a = document.getElementById("about");
 
+	a.style.display = "none";
 	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "none";
@@ -97,7 +106,9 @@ function switch_to_s()
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
 	var l = document.getElementById("links");
+	var a = document.getElementById("about");
 
+	a.style.display = "none";
 	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "none";
@@ -116,8 +127,32 @@ function switch_to_l()
 	var k = document.getElementById("sheets");
 	var s = document.getElementById("settings");
 	var l = document.getElementById("links");
+	var a = document.getElementById("about");
 
+	a.style.display = "none";
 	l.style.display = "block";
+	qu.style.display = "none";
+	r.style.display = "none";
+	q.style.display = "none";
+	k.style.display = "none";
+	s.style.display = "none";
+
+	quiz_reset();
+}
+
+//Switch to about us
+function switch_to_a()
+{
+	var q = document.getElementById("quiz");
+	var r = document.getElementById("reports");
+	var qu = document.getElementById("game");
+	var k = document.getElementById("sheets");
+	var s = document.getElementById("settings");
+	var l = document.getElementById("links");
+	var a = document.getElementById("about");
+
+	a.style.display = "block";
+	l.style.display = "none";
 	qu.style.display = "none";
 	r.style.display = "none";
 	q.style.display = "none";
