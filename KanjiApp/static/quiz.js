@@ -36,11 +36,12 @@ function parseData(data)
 	g.style.display = "block";
 
 	//Start audio
+	/*
 	var audio = document.getElementById("gameAudio");
 	audio.load();
 	audio.play();
 	document.getElementById("mute").addEventListener("click", mute, true);
-	document.getElementById("mute").value = "Mute";
+	document.getElementById("mute").value = "Mute";*/
 
 	$("#s_sticker").show();
 	$("#s_sticker2").hide();

@@ -164,8 +164,8 @@ function switch_to_a()
 
 function quiz_reset()
 {
-	var audio = document.getElementById("gameAudio");
-	audio.pause();
+	//var audio = document.getElementById("gameAudio");
+	//audio.pause();
 
 	score = 0;
 	turn = 1;
