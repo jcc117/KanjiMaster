@@ -13,15 +13,19 @@ class User(db.Model):
 	lname = db.Column(db.String(300), nullable = False)
 	email = db.Column(db.String(300), nullable = False)
 	reason = db.Column(db.String(210), nullable = False)
+	weekly_goal = db.Column(db.String(200))
+	weekly_goal_timestamp = db.Column(db.DateTime)
 	date = db.Column(db.DateTime)
 
-	def __init__(self, id, passw, fname, lname, email, reason):
+	def __init__(self, id, passw, fname, lname, email, reason, goal, tp):
 		self.userID = id
 		self.password = bcrypt.encrypt(passw)
 		self.fname = fname
 		self.lname = lname
 		self.email = email
 		self.reason = reason
+		self.weekly_goal = goal
+		self.weekly_goal_timestamp = tp
 
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
@@ -37,6 +41,10 @@ class User(db.Model):
 
 	def latest_report(self, date):
 		self.date = date
+
+	def new_weekly_goal(self, goal, time):
+		self.weekly_goal = goal
+		self.weekly_goal_timestamp = time
 
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)

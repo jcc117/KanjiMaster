@@ -42,6 +42,7 @@ parser.add_argument('pass', type=str)
 parser.add_argument('pass2', type=str)
 parser.add_argument('old_pass', type=str)
 parser.add_argument('reason', type=str)
+parser.add_argument('goal', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -176,6 +177,19 @@ def change_reason():
 	else:
 		return json.dumps("Unauthorized action"), 401
 
+@app.route("/change_weekly_goal/", methods=['POST'])
+def change_weekly_goal():
+	if g.user:
+		data = parser.parse_args()
+		if data['goal']:
+			g.user.new_weekly_goal(data['goal'], datetime.now())
+			db.session.commit()
+			return json.dumps("Success"), 200
+		else:
+			return json.dumps("No new goal given"), 400
+	else:
+		return json.dumps("Unauthorized action"), 401
+
 #Get the kanji for a specific category
 '''
 @app.route("/kanji/", methods = ['POST'])
@@ -282,7 +296,7 @@ class R_User(Resource):
 	def get(self):
 		if g.user:
 			rv = []
-			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason, "date":str(g.user.date)})
+			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason, "date":str(g.user.date), "weekly_goal":g.user.weekly_goal, "goal_ts":str(g.user.weekly_goal_timestamp)})
 			return json.dumps(rv), 200
 		else:
 			return json.dumps("Unauthorized"), 401
@@ -315,11 +329,13 @@ class R_User(Resource):
 				error = "No email given"
 			elif not data['reason']:
 				error = "No reason to study given"
+			elif not data['goal']:
+				error = "No weekly goal"
 			#Check for taken username
 			elif get_user_id(data['userID']) is None:
 				#Catch any possible errors
 				try:
-					db.session.add(User(data['userID'], data['pass'], data['fname'], data['lname'], data['email'], data['reason']))
+					db.session.add(User(data['userID'], data['pass'], data['fname'], data['lname'], data['email'], data['reason'], data['goal'], datetime.now()))
 					db.session.commit()
 				except:
 					return json.dumps("Bad request"), 400

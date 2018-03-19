@@ -102,8 +102,9 @@ function signup()
   var email = document.getElementById("email").value;
   var pass2 = document.getElementById("pass2").value;
   var reason = document.getElementById("reason").value;
+  var goal = document.getElementById("goal").value;
 
-  var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2 + "&reason=" + reason;
+  var data = "userID=" + userID + "&pass=" + password + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pass2="+pass2 + "&reason=" + reason + "&goal=" + goal;
 
   makeRequest("POST", "/user/", display_sucess, 201, data, 'application/x-www-form-urlencoded');
 }

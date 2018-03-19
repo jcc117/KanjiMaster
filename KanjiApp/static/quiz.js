@@ -266,8 +266,8 @@ function quit()
 
 	$('#feedback').html('');
 
-	var audio = document.getElementById("gameAudio");
-	audio.pause();
+	//var audio = document.getElementById("gameAudio");
+	//audio.pause();
 
 	//set visibility of pages
 	switch_to_q();

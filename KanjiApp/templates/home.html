@@ -12,6 +12,7 @@
 {% block body %}
 <div class="reason">
 	<p id="reason"></p>
+	<p id="weekly_goal"></p>
 </div>
 <nav class="homemenu">
 	<span id="aspan">About Us</span>
@@ -177,6 +178,14 @@
 		<p id='reason_response'></p>
 		<input type='submit' id='change_r' value="Save"/>
 		<br />
+		<h5>Change Gemstone</h5>
+		<select id="gemstone">
+			<option value={{url_for('static', filename='style.css')}}>Pearl</option>
+			<option value={{url_for('static', filename='style_b.css')}}>Saphire</option>
+			<option value={{url_for('static', filename='style_r.css')}}>Ruby</option>
+			<option value={{url_for('static', filename='style_g.css')}}>Emerald</option>
+		</select>
+		<input type='submit' id='change_c' value="Save"/>
 	</div>
 </section>
 
