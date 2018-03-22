@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import bcrypt
+import datetime
 
 db = SQLAlchemy()
 
@@ -26,6 +27,8 @@ class User(db.Model):
 		self.reason = reason
 		self.weekly_goal = goal
 		self.weekly_goal_timestamp = tp
+		date = datetime.datetime.now()
+		self.date = date + datetime.timedelta(days = -1)
 
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
