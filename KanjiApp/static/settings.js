@@ -1,4 +1,5 @@
 var latest_date;
+var mnemonics;
 
 //Request information about the user
 function s_setup()
@@ -70,6 +71,8 @@ function setup_info(data)
 	//Set up info for weekly goals
 	var goal = pData[0]['weekly_goal'];
 	var goal_ts = new Date(pData[0]['goal_ts']);
+	mnemonics = pData[0]['mnemonics'];
+	alert(mnemonics);
 
 	//Check if a week has passed to set up a weekly goal
 	if((Date.now() - goal_ts.valueOf()) >= (60000 * 60 * 24 * 7))

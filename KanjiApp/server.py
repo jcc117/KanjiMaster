@@ -296,7 +296,7 @@ class R_User(Resource):
 	def get(self):
 		if g.user:
 			rv = []
-			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason, "date":str(g.user.date), "weekly_goal":g.user.weekly_goal, "goal_ts":str(g.user.weekly_goal_timestamp)})
+			rv.append({"userID":g.user.userID, "fname":g.user.fname, "lname":g.user.lname, "email":g.user.email, "reason":g.user.reason, "date":str(g.user.date), "weekly_goal":g.user.weekly_goal, "goal_ts":str(g.user.weekly_goal_timestamp), "mnemonics":g.user.mnemonics})
 			return json.dumps(rv), 200
 		else:
 			return json.dumps("Unauthorized"), 401

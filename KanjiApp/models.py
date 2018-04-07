@@ -17,6 +17,7 @@ class User(db.Model):
 	weekly_goal = db.Column(db.String(200))
 	weekly_goal_timestamp = db.Column(db.DateTime)
 	date = db.Column(db.DateTime)
+	mnemonics = db.Column(db.Boolean)
 
 	def __init__(self, id, passw, fname, lname, email, reason, goal, tp):
 		self.userID = id
@@ -29,6 +30,7 @@ class User(db.Model):
 		self.weekly_goal_timestamp = tp
 		date = datetime.datetime.now()
 		self.date = date + datetime.timedelta(days = -1)
+		self.mnemonics = True
 
 	def validate_password(self, passw):
 		return bcrypt.verify(passw, self.password)
@@ -49,6 +51,9 @@ class User(db.Model):
 		self.weekly_goal = goal
 		self.weekly_goal_timestamp = time
 
+	def new_mnemonics(self, bool):
+		self.mnemonics = bool
+
 class Report(db.Model):
 	reportID = db.Column(db.Integer, primary_key = True)
 	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)
@@ -63,6 +68,17 @@ class Report(db.Model):
 		self.num_correct = num_correct
 		self.num_total = num_total
 		self.date = date
+
+class Mnemonic(db.Model):
+	mnemonic_id = db.Column(db.Integer, primary_key = True)
+	userID = db.Column(db.String(300), db.ForeignKey('user.userID'), nullable = False)
+	kanji = db.Column(db.String(10), nullable = False)
+	device = db.Column(db.String(300), nullable = False)
+
+	def __init__(self, user, kanji, device):
+		self.userID = user
+		self.kanji = kanji
+		self.device = device
 
 class Kanji(db.Model):
 	kanji_id = db.Column(db.Integer, primary_key = True)

@@ -251,6 +251,11 @@ function wrong()
 	$("#s_sticker2").hide();
 	$("#s_sticker").show();
 
+	if(mnemonics)
+	{
+		addMnemonic(kanji[cor], romaji[cor]);
+	}
+
 	turn++;
 	quiz_setup();
 }
@@ -429,4 +434,14 @@ function verify_dates(date)
 		return true;
 	else
 		return false;
+}
+
+//Add a mnemonic device
+function addMnemonic(kanji, romaji)
+{
+	var answer = confirm('Would you like to create a mnemonic device to help remember this kanji?');
+	if(answer)
+	{
+		var device = prompt('Enter you device for ' + kanji + ' => ' + romaji + ':');
+	}
 }
