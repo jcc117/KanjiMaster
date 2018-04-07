@@ -436,12 +436,61 @@ function verify_dates(date)
 		return false;
 }
 
+
+/********************************************************************************/
+//Mnemonic device functions
+/**************************************************************************************/
+
 //Add a mnemonic device
 function addMnemonic(kanji, romaji)
 {
 	var answer = confirm('Would you like to create a mnemonic device to help remember this kanji?');
 	if(answer)
 	{
-		var device = prompt('Enter you device for ' + kanji + ' => ' + romaji + ':');
+		var device = prompt('Enter your device for ' + kanji + ' => ' + romaji + ':');
+		var data = "device=" + device + "&kanji=" + kanji + '->' + romaji;
+		makeRequest("POST", '/mnemonics/', do_nothing, 201, data, 'application/x-www-form-urlencoded');
 	}
 }
+
+function m_setup()
+{
+	makeRequest("GET", "/mnemonics/", setup_mnemonics, 200);
+}
+
+function setup_mnemonics(data)
+{
+	var pData = JSON.parse(JSON.parse(data)); //Double parsed data
+	p_data = pData;
+
+	//Add rows the table of kanji
+
+	var table = document.getElementById("m_table");
+	for(i in pData)
+	{
+		add_m_row(table, pData[i]['kanji'], pData[i]['device']);
+	}
+}
+
+function add_m_row(table, kanji, device)
+{
+	//Create outer container
+	var elem = document.createElement("tr");
+	elem.classList.add("row");
+
+	//Create each column, each containing a data item
+	var k = document.createElement("td");
+	var r = document.createElement("td");
+
+	k.classList.add("column");
+	r.classList.add("column");
+
+	k.appendChild(document.createTextNode(kanji));
+	r.appendChild(document.createTextNode(device));
+
+	elem.appendChild(k);
+	elem.appendChild(r);
+	table.appendChild(elem);
+}
+
+window.addEventListener("load", m_setup, true);

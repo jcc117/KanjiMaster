@@ -8,7 +8,7 @@ from flask import Flask, render_template, request, session, flash, g, redirect, 
 from flask_restful import reqparse, abort, Api, Resource
 #import jaconv
 
-from models import db, User, Report, Kanji
+from models import db, User, Report, Kanji, Mnemonic
 
 from datetime import datetime
 
@@ -43,6 +43,7 @@ parser.add_argument('pass2', type=str)
 parser.add_argument('old_pass', type=str)
 parser.add_argument('reason', type=str)
 parser.add_argument('goal', type=str)
+parser.add_argument('device', type=str)
 
 def get_user_id(username):
 	rv = User.query.filter_by(userID=username).first()
@@ -291,6 +292,31 @@ class R_Report(Resource):
 			return json.dumps("Resource created"), 201
 		return json.dumps("Unauthorized"), 401
 
+class R_Mnemonic(Resource):
+	def get(self):
+		if g.user:
+			results = Mnemonic.query.filter_by(userID = g.user.userID).all()
+			rv = []
+			for i in range(0, len(results)):
+				rv.append({"kanji":results[i].kanji, "device":results[i].device})
+			return json.dumps(rv), 200
+		return json.dumps("Unauthorized"), 401
+
+	def post(self):
+		if g.user:
+			data = parser.parse_args()
+			if not data['device'] or not data['kanji']:
+				return json.dumps("Not enough arguments"), 400
+
+			try:
+				db.session.add(Mnemonic(g.user.userID, data['kanji'], data['device']))
+				db.session.commit()
+			except:
+				return json.dumps("Bad request"), 400
+			return json.dumps("Resource created"), 201
+
+		return json.dumps("Unauthorized"), 401
+
 class R_User(Resource):
 	#Get all of the information about the current user
 	def get(self):
@@ -353,6 +379,7 @@ class R_User(Resource):
 api.add_resource(R_Kanji, "/kanji/")
 api.add_resource(R_Report, "/report/")
 api.add_resource(R_User, "/user/")
+api.add_resource(R_Mnemonic, "/mnemonics/")
 
 def add_data():
 	'''
