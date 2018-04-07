@@ -165,6 +165,15 @@ def change_email():
 	else:
 		return json.dumps("Unauthorized action"), 401
 
+@app.route("/change_mnemonics/", methods = ['POST'])
+def change_mnemonics():
+	if g.user:
+		g.user.new_mnemonics(not (g.user.mnemonics))
+		db.session.commit()
+		return json.dumps("Success"), 200
+	else:
+		return json.dumps("Unauthorized action"), 401
+
 @app.route("/change_reason/", methods=['POST'])
 def change_reason():
 	if g.user:

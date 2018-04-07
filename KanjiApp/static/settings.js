@@ -47,6 +47,10 @@ function change_css()
 	csslink.setAttribute("href", file);
 }
 
+function change_mnemonics()
+{
+	makeRequest("POST", "/change_mnemonics/", refresh_page, 200);
+}
 //Set up all of the info about the user
 function setup_info(data)
 {
@@ -67,12 +71,17 @@ function setup_info(data)
 	document.getElementById("change_e").addEventListener("click", change_email, true);
 	document.getElementById("change_r").addEventListener("click", change_reason, true);
 	document.getElementById("change_c").addEventListener("click", change_css, true);
+	document.getElementById("change_m").addEventListener("click", change_mnemonics, true);
 
 	//Set up info for weekly goals
 	var goal = pData[0]['weekly_goal'];
 	var goal_ts = new Date(pData[0]['goal_ts']);
 	mnemonics = pData[0]['mnemonics'];
-	alert(mnemonics);
+
+	if(mnemonics)
+		document.getElementById("change_m").value = "Disable Mnmonics";
+	else
+		document.getElementById("change_m").value = "Enable Mnemonics";
 
 	//Check if a week has passed to set up a weekly goal
 	if((Date.now() - goal_ts.valueOf()) >= (60000 * 60 * 24 * 7))
@@ -86,6 +95,11 @@ function setup_info(data)
 	{
 		document.getElementById("weekly_goal").innerHTML = "Your weekly goal - " + goal; 
 	}
+}
+
+function refresh_page()
+{
+	location.reload();
 }
 
 window.addEventListener("load", s_setup, true);

@@ -180,6 +180,9 @@
 		<p id='reason_response'></p>
 		<input type='submit' id='change_r' value="Save"/>
 		<br />
+		<h5>Change Options for Mnemonic Devices</h5>
+		<input id='change_m' type='submit' value=''/>
+		<br />
 		<h5>Change Gemstone</h5>
 		<select id="gemstone">
 			<option value={{url_for('static', filename='style.css')}}>Pearl</option>
@@ -277,6 +280,8 @@
 </section>
 <section id="mnemonics" display = "none">
 	<h3>Mnemonics</h3>
+	<p>If you would like to change the settings for mnemonics so you don't have to create them, please go to user settings
+	and change them to your preferred options.</p>
 	<table id='m_table'>
 		<tr>
 			<th>Kanji</th>
