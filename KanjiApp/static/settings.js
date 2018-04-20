@@ -79,7 +79,7 @@ function setup_info(data)
 	mnemonics = pData[0]['mnemonics'];
 
 	if(mnemonics)
-		document.getElementById("change_m").value = "Disable Mnmonics";
+		document.getElementById("change_m").value = "Disable Mnemonics";
 	else
 		document.getElementById("change_m").value = "Enable Mnemonics";
 

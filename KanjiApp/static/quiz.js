@@ -447,7 +447,7 @@ function addMnemonic(kanji, romaji)
 	var answer = confirm('Would you like to create a mnemonic device to help remember this kanji?');
 	if(answer)
 	{
-		var device = prompt('Enter your device for ' + kanji + ' => ' + romaji + ':');
+		var device = prompt('Enter your mnemonic device for ' + kanji + ' => ' + romaji + ':');
 		var data = "device=" + device + "&kanji=" + kanji + '->' + romaji;
 		makeRequest("POST", '/mnemonics/', do_nothing, 201, data, 'application/x-www-form-urlencoded');
 	}

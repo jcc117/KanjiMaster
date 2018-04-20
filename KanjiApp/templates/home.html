@@ -18,7 +18,7 @@
 	<span id="aspan">About Us</span>
 	<span id="qspan">Quizzes</span>
 	<span id="rspan">Progress Report</span>
-	<span id="kspan">Kanji Sheet</span>
+	<span id="kspan">Kanji Sets</span>
 	<!--<span id="tspan">Site Tutorial</span>-->
 	<span id="sspan">User Settings</span>
 	<span id="lspan">Reading Material</span>
@@ -55,7 +55,7 @@
 		reason mnemonics are optional and may be turned off by the user at any point via the user setttings page.
 	</p>
 	<p>More information about the design of the site along with more details on research can be found in the document below.</p>
-	<a href={{url_for('static', filename = 'Draft_ver2.docx')}} download>University of Pittsburgh, JPNSE 1999 Capstone Paper by Jordan Carr</a>
+	<a href={{url_for('static', filename = 'Draft_ver2.docx')}} target="_blank">University of Pittsburgh, JPNSE 1999 Capstone Paper by Jordan Carr</a>
 	<a href="https://github.com/jcc117/KanjiMaster">Code for this Website</a>
 </section>
 
@@ -136,7 +136,7 @@
 <!--Get the kanji sheets for the user -->
 <section id="sheets" display="none">
 	<div class="sticker"><img src={{url_for('static', filename = 'ddlc_stickers/y_sticker_1.png')}}/></div>
-	<h4>Kanji Sheets</h4>
+	<h4>Kanji Sets</h4>
 	<p>Study all the kanji you will be tested on.</p>
 	<p>Search list for specific lessons</p>
 	<select id="k_option">
